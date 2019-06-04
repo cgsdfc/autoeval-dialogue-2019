@@ -36,10 +36,105 @@ DIRO, Universite de Montreal \\
 \end{abstract}
 
 \section{Introduction}
+\paragraph{1.} Two kinds of dialogue response generation systems:
+supervised dialogue models and unsupervised dialogue models.
 
+\paragraph{2. } The focus of this paper,
+the unsupervised models such as chatbots using end-to-end training
+with neural networks can avoid supervised labels but their
+evaluation is an open problem.
+
+\paragraph{3. } Other NLP tasks have developed effective automatic metrics such as:
+\begin{enumerate}
+    \item Machine translation: BLEU and METEOR.
+    \item Automatic Summarization: ROUGE.
+\end{enumerate}
+But the assumption these metrics make is too strong for dialogue systems, which
+permit vastly diverse responses to a given context.
+
+\paragraph{4. } The main work of this paper: investigate the correlation
+between several metrics and human judgement on two datasets and four models.
+The \textbf{experiment objects} of this paper is as follow:
+\begin{enumerate}
+    \item Models:
+    \begin{enumerate}
+          \item Retrieval: TF-IDF, Dual Encoder.
+        \item Generative: LSTM, HRED.
+    \end{enumerate}
+    \item Metrics:
+    \begin{enumerate}
+        \item Word-Overlap: BLEU, METEOR, ROUGE.
+        \item Word-Embedding: ...
+    \end{enumerate}
+    \item Datasets:
+    \begin{enumerate}
+        \item Chitchat-Oriented: Twitter dataset.
+        \item Technical-Oriented: Ubuntu Dialogue Dataset.
+    \end{enumerate}
+\end{enumerate}
+
+Major conclusion:
+For all metrics, there is weak correlation on Twitter dataset and no correlation
+on Ubuntu dataset.
+Methodology:
+\begin{enumerate}
+    \item statistical analysis on the survey's results.
+    \item qualitative analysis of examples.
+    \item exploration of the sensitivity of the metrics.
+\end{enumerate}
+
+\paragraph{5. } Conclusion of the experiment:
+\begin{enumerate}
+    \item The advice to the researchers: shift away from these metrics.
+    \item We need to find a new metric that correlates more strongly with human.
+\end{enumerate}
 
 \section{Related Work}
+% Find good reasons why some of the metrics are not used.
+\paragraph{1. } Excluding certain metrics and the reasons of doing so.
+\begin{enumerate}
+    \item Perplexity
+    \begin{enumerate}
+        \item Violate \emph{model-independent}. The model generating the response
+        does not evaluate itself.
+        \item There is no utterance level score for PPL.
+        \item Cannot be computed for retrieval models.
+    \end{enumerate}
+    \item Recall
+    \begin{enumerate}
+        \item The pattern of metrics should be evaluating the response against the
+        ground-truth (The setting in machine translation).
+    \end{enumerate}
+    \item Metrics for supervised models.
+    \begin{enumerate}
+        \item We don't study supervised metrics in this paper.
+        \item These metrics are well-studied.
+    \end{enumerate}
+\end{enumerate}
 
+\paragraph{2.} Usage of metrics in the lierature.
+\begin{enumerate}
+    \item Ritter et al. (2011) use an SMT model to beat retrieval baselines
+    under BLEU.
+    \item Sordoni et al. (2015) use an RNNLM model and context-sensitive multi-BLEU.
+    \item Li et al. (2015) evaluate their diversity-promoting objective function
+    with single-reference BLEU.
+    \item Galley et al. (2015b) propose deltaBLEU that uses multiple human evaluated
+    ground-truth. But it only has weak to moderate correlation to human judgement.
+\end{enumerate}
+
+\paragraph{3.} There are studies
+of correlation of metrics with human judgements in other NLP fields,
+such as MT and NLG. But dialogue response generation is intrinsically
+a harder problem since the set of correct answers are large.
+Studies are listed as follow:
+\begin{enumerate}
+    \item MT: (Callison-Burch et al., 2010; Callison-Burch et al.,
+2011; Bojar et al., 2014; Graham et al., 2015).
+    \item NLG: (Stent et
+al., 2005; Cahill, 2009; Reiter and Belz, 2009; Es-
+pinosa et al., 2010).
+\end{enumerate}
 
 \section{Evaluation Metrics}
 \subsection{Word Overlap-based Metrics}
@@ -68,7 +163,7 @@ DIRO, Universite de Montreal \\
 \paragraph{Survey Results.}
 \paragraph{Qualitative Analysis.}
 
-\section{Disucsion}
+\section{Discussion}
 \paragraph{Constrained tasks.}
 \paragraph{Incoporating multiple responses.}
 \paragraph{Searching for suitable metrics.}
