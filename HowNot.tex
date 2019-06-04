@@ -1,0 +1,75 @@
+\documentclass[runningheads]{llncs}
+
+\begin{document}
+\title{How NOT To Evaluate Your Dialogue System: An Empirical Study of
+Unsupervised Evaluation Metrics for Dialogue Response Generation}
+\titlerunning{How NOT To Evaluate Your Dialogue System}
+
+\author{Chia-Wei Liu \inst{1} \and Ryan Lowe \inst{1} \and
+Iulian V. Serban \inst{2} \and Micheal Noseworthy \inst{1}}
+
+\institute{School of Computer Science, McGill University
+\email{\{chia-wei.liu,ryan.lowe,michael.noseworthy\}@mail.mcgill.ca}
+\and
+DIRO, Universite de Montreal \\
+\email{iulian.vlad.serban@umontreal.ca}}
+
+\maketitle
+
+\begin{abstract}
+    We investigate evaluation metrics for dialogue
+    response generation systems where supervised
+    labels, such as task completion, are not available.
+    Recent works in response generation
+    have adopted metrics from machine translation
+    to compare a model’s generated response
+    to a single target response. We show that
+    these metrics correlate very weakly with human
+    judgements in the non-technical Twitter
+    domain, and not at all in the technical Ubuntu
+    domain. We provide quantitative and qualitative
+    results highlighting specific weaknesses
+    in existing metrics, and provide recommendations
+    for future development of better automatic
+    evaluation metrics for dialogue systems.
+\end{abstract}
+
+\section{Introduction}
+
+
+\section{Related Work}
+
+
+\section{Evaluation Metrics}
+\subsection{Word Overlap-based Metrics}
+\paragraph{BLEU.}
+\paragraph{METEOR.}
+\paragraph{ROUGE.}
+
+\subsection{Embedding-based Metrics}
+\paragraph{Greedy Matching.}
+\paragraph{Embedding Average.}
+\paragraph{Vector Extrema.}
+
+
+\section{Dialogue Response Generation Models}
+\subsection{Retrieval Models}
+\paragraph{TF-IDF}
+\paragraph{Dual Encoder}
+
+\subsection{Generative Models}
+\paragraph{LSTM language model.}
+\paragraph{HRED}
+\subsection{Conclusions from an Incomplte Analysis}
+
+\section{Human Correlation Analysis}
+\paragraph{Data Collection.}
+\paragraph{Survey Results.}
+\paragraph{Qualitative Analysis.}
+
+\section{Disucsion}
+\paragraph{Constrained tasks.}
+\paragraph{Incoporating multiple responses.}
+\paragraph{Searching for suitable metrics.}
+
+\end{document}

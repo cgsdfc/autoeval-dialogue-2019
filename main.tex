@@ -1,6 +1,9 @@
 \documentclass[runningheads]{llncs}
 %
 \usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{float}
 % Used for displaying a sample figure. If possible, figure files should
 % be included in EPS format.
 %
@@ -9,11 +12,11 @@
 % \renewcommand\UrlFont{\color{blue}\rmfamily}
 %
 \begin{document}
-\title{An Diversity-Oriented Analysis on Evaluating the Generative Dialogue Models}
+\title{Automatic Evaluation of Generative Dialogue Systems: An Empirical Study}
 %
 % If the paper title is too long for the running head, you can set
 % an abbreviated paper title here
-\titlerunning{An Diversity-Oriented Analysis}
+\titlerunning{Automatic Evaluation of Generative Dialogue Systems}
 %
 \author{Cong Feng\inst{1} \and Wenge Rong\inst{1}}
 %
@@ -35,53 +38,150 @@ Beihang University, Beijing, China}
 % Actual: 585
 % Shorten this abstract.
 \begin{abstract}
-    Although the Seq2Seq-based generative dialogue systems are
-    able to generate natural and
-    fluent responses,
-    they have been known for preferring to generate
-    simple and repeated responses.
-    Towards the goal of generating diverse, meaningful and
-    engaging dialogues,
-    many researchers proposed methods to address the
-    problems of low-quality responses.
-    However, it is also known that the
-    lack of good automatic evaluation metrics
-    has led the field to rely heavily on human evaluation,
-    which is expensive and unscalable.
-    To better understand the pros and cons of various
-    evaluation metrics,
-    we trained three generative models on
-    three public-available datasets and measured their
-    performances with various metrics on both system level
-    and utterance level.
-    We found that there is no observable consistency among scores
-    across various models, datasets and metrics.
-    However, on a per-metric basis, datasets generally pose a larger impact on
-    the scores than models do.
-    In addition, the distributions of
-    utterance-level scores tend to have similar shape if the corresponding metrics
-    use the same set of features as measurement.
-    We owe the experimental observations to the facts
-    that the enormous space for reasonable responses
-    makes the evaluation hard to tackle.
-    Meanwhile, the ability of the models to generalize across
-    various datasets remain highly enhanceable.
-    Finally, the highly diversed distributions of scores
-    of various metrics makes the results somehow confusing.
-    Based on the empirical results, we pointed out several
-    directions for future work, including using new model
-    architectures, investigating the statistical nature of
-    the open-domain dialogue datasets and
-    developing dataset-specific metrics.
-\keywords{}
+    Chat-oriented dialogue systems have seen a boom in the recent year.
+    These systems can generate a appropriate response given a message from the user and
+    can be applied to chatbots or user simulation.
+
+    However, it remains an open problem how to evalute these systems automatically while
+    keeping high correlation to human's judgement.
+
+
+
+% from specific to general
+\keywords{Automatic Metrics \and Response Generation \and Seq2Seq Model \and Chatbot}
 \end{abstract}
 %
 %
 \section{Introduction}
+
 \section{Background}
+
 \section{Evaluation Architecture}
+It's widely accepted that automatic evaluation metrics correlate poorly
+with human evaluation. However, the correlation between different metrics
+has not been studied thoroughly.
+On the other hand, the transferability of generative dialogue models
+over different datasets has drawn little attention.
+We argue that the large amount of noise, diverse topics and
+relatively weak grammar correctness of the open-domain dialogue datasets
+can influence the quality of the trained models, which should gain more
+attention of the researchers.
+We try to answer these questions through experiment:
+\begin{enumerate}
+    \item Do the performances of models maintain across datasets?
+    \item Do various metrics score a model trained on a certain dataset consistently?
+    \item Which one poses greater impact on the scores, the model or the dataset?
+\end{enumerate}
+
+We first trained multiple models on multiple datasets and then measured the
+system-level scores and utterance-level scores with various metrics.
+Table~\ref{tab:experiment_triples} shows all the models, datasets and
+metrics we used. $M, D, S$ denote the set of models, the set of datasets and
+the set of metrics, respectively. We define that a model $m \in M$ is
+the architecture of some kind of generative model rather than a trained
+instance of such. A dataset $d \in D$ is a subset of all dialogues from
+some domain and it is divided into three subset: the training set, the
+validation set and the testing set. A metric $s \in S$ is a function that
+can map the context $c$, the reference $r$ and the response $\hat{r}$
+to a real number, denoted as $f_s(c, r, \hat{r})$.
+The the trained instance of model $m$ on dataset $d$ is denoted as $(m, d)$.
+\begin{table}[H]
+    \centering
+    \caption{Experiment Objects}
+    \label{tab:experiment_triples}
+    \begin{tabular}{|r|m{0.6\textwidth}|}
+        \hline
+        Models & HRED, LSTM, VHRED \\
+        \hline
+        Datasets & Ubuntu, OpenSubtitles, LSDSCC \\
+        \hline
+        Metrics & BLEU, ROUGE, METEOR, Vector-Average,
+        Vector-Extrema, Greedy-Matching,
+        ADEM, PPL, Distinct-N \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Experiment Setup}
+In this section we describe various settings for our experiment.
+
+\subsection{Models}
+Among the large number of proposed models, we limited our scope to
+the models based on the Seq2Seq architecture and better still, the models
+that have been studied in a multiple-dataset setup.
+Serban et al. proposed three extensions to the vallina Seq2Seq model,
+namely HRED\cite{HRED}, VHRED\cite{VHRED} and MrRNN\cite{MrRNN}, each of which
+features different enhancements to the basic model\cite{A_Short_Review}.
+The HRED model can utilize long-term dialogue history.
+The VHRED model can capture uncertaincy and ambiguity in the dialogues.
+The MrRNN model can generate responses with high-level compositional structure.
+In addition, the HRED and VHRED models have been tested on the Ubuntu Dialogue Corpus
+and Twitter Triple Corpus in \cite{VHRED}, which shows they are strong baselines
+in terms of transferability. We therefore choosed HRED and VHRED as two main models to
+be studied in our experiment.
+
+For the baseline model we used the LSTM-based RNN model as in \cite{VHRED}
+instead of the vallina Seq2Seq model.
+We did so to better align our setup to that of Serban's and to ease comparison of
+results from across experiments.
+
+\paragraph{The LSTM Model}
+\paragraph{The HRED Model}
+\paragraph{The VHRED Model}
+
+\subsection{Model Hyper-parameters}
+We use Adam\cite{AdamOpt} to optimize all models with a mini-batch size of 20.
+%The dimension of word embeddings
+
+All the instances were trained on a Nvidia GTX GPU for at least one week.
+The perplexity at converge for different instances is shown at
+table~\ref{tab:converged_perplexity}.
+We didn't use a pretrained HRED to initialize the correpondent VHRED as in \cite{VHRED}.
+We applied gradient clipping to all training with a cutoff of 1.
+We used a fixed learning rate of 0.0002 on Ubuntu and 0.0001 on OpenSubtitles and LSDSCC.
+On decoding we use random sampling.
+
+\begin{table}[H]
+    \centering
+    \caption{Perplexity at converge}
+    \label{tab:converged_perplexity}
+    \begin{tabular}{llll}
+        \toprule
+        \midrule
+        & HRED & LSTM & VHRED \\
+        \midrule
+        LSDSCC & 32.9229 & 32.5599 & 37.7149 \\
+        OpenSubtitles & 41.6392 & 34.2724 & 33.6867 \\
+        Ubuntu & 39.1623 & 46.4055 & 40.2486 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Other parameter settings are largely similar to \cite{VHRED}.
+
+\subsection{Datasets}
+Open-domain dialogue datasets are generally large and noisy and
+we select three representative ones to highlight this nature.
+In particular, we favors public-available ones with preprocessed versions
+since that would require the least difficulty to acquire and prepare the datasets.
+
+\paragraph{Ubuntu Dialogue Corpus}
+was constructed by Lowe et al. from
+the Ubuntu broad of the Freenode IRC networks\cite{ubuntu_corpus}.
+It contains mult-turn dyadic (two people) dialogues on technical problems and solutions
+about the Ubuntu operating system.
+
+\paragraph{OpenSubtitles}
+\paragraph{LSDSCC}
+
+
+\subsection{Metrics}
+
+
 \section{Experimental Study}
+
 \section{Conclusion and Future Work}
+
 \subsection*{Acknowledgements.}
 %
 \bibliographystyle{splncs04}
