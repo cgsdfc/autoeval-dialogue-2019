@@ -6,83 +6,88 @@
 \usepackage{float}
 
 \begin{document}
-\title{Automatic Evaluation of Generative Dialogue Systems: An Empirical Study}
+    \title{Automatic Evaluation of Generative Dialogue Systems: An Empirical Study}
 
-\titlerunning{Automatic Evaluation of Generative Dialogue Systems}
+    \titlerunning{Automatic Evaluation of Generative Dialogue Systems}
 
-\author{Cong Feng\inst{1} \and Wenge Rong\inst{1}}
+    \author{Cong Feng\inst{1} \and Wenge Rong\inst{1}}
 
-\authorrunning{C. Feng et al.}
+    \authorrunning{C. Feng et al.}
 
-\institute{School of Computer Science and Engineering,
-Beihang University, Beijing, China
-\email{cgsdfc@126.com} \\
-\email{w.rong@buaa.edu.cn}
-}
+    \institute{School of Computer Science and Engineering,
+    Beihang University, Beijing, China
+    \email{cgsdfc@126.com} \\
+    \email{w.rong@buaa.edu.cn}
+    }
 
-\maketitle
+    \maketitle
 
-\begin{abstract}
-    It has been known that in the field of conversation response generation, the automatic metrics correlate poorly with human judgement.
-    In this paper, we try to learn the correlation between the scores computed by different automatic metrics.
-    By an empirical study we show that the distributions of the utterance-level scores vary but the correlation between them highlights some regular patterns.
-    Following these patterns we derive clusterings of these distributions,
-\keywords{Automatic Metrics, Response Generation, Chatbot}
-\end{abstract}
-
-
-\section{Introduction}
-
-\section{Related Work}
-Related work on metrics.
-
-\section{Experiment Setup}
-Explain the metrics, models and datasets we used.
-
-\subsection{Metrics}
-Introduce metrics, one per paragraph.
-\paragraph{BLEU.}
-\paragraph{METEOR.}
-\paragraph{ROUGE.}
-
-\paragraph{Greedy Matching.}
-\paragraph{Embedding Average.}
-\paragraph{Vector Extrema.}
-
-\paragraph{Distinct-N.}
-\paragraph{Utterance length.}
-
-\subsection{Models}
-Introduce models, one per paragraph.
-\paragraph{LSTM language model.}
-\paragraph{HRED.}
-\paragraph{VHRED.}
-
-\subsection{Datasets}
-Introduce datasets, one per paragraph.
-\paragraph{Ubuntu Dialogue Corpus}
-\paragraph{OpenSubtitles}
-\paragraph{LSDSCC}
+    \begin{abstract}
+        It has been known that in the field of conversation response generation, the automatic metrics correlate poorly with human judgement.
+        In this paper, we try to learn the correlation between the scores computed by different automatic metrics.
+        By an empirical study we show that the distributions of the utterance-level scores vary but the correlation between them highlights some regular patterns.
+        Following these patterns we derive clusterings of these distributions,
+        \keywords{Automatic Metrics, Response Generation, Chatbot}
+    \end{abstract}
 
 
-\section{Experimental Study}
-\paragraph{Statistical Analysis.}
-Display the clustering of metrics through multiple perspectives,
-such as the similarity of their distribution plots, tables of Pearson and Spearman Correlation
-and the visualization outcomes of a certain clustering algorithm.
+    \section{Introduction}
+    The chat-oriented dialogue systems have seen a boom in the recent literature of dialogue systems. These systems are trained to make an appropriate response given a conversational context and can be applied to various chatbot applications, language education and intelligent personal assistants. This setting is different from the traditional task-oriented dialogue systems, which are programmed to assist their user on completion of a specific task, such as restaurant reservation and airline information acquisition. As such, the chat-oriented dialogue systems cannot be evaluated in the same supervised setting as their task-oriented counterpart, which turns out to bring a greater challenge.
 
-\paragraph{Qualitative Analysis.}
-Display and analyze some examples where different metrics disagree greatly.
-For example, a response with no n-gram overlap will get zero BLEU but if it is semantically
-relevant to the message or reference, embedding-based metric will give it a high score.
+    As an advanced techique to implement the chat-oriented system, generative model based on neural network architecture feature end-to-end training with minimal hard-coded features and fluent human-like output sentences. Given a large corpus of context-response pairs, these neural models can learn language patterns and extract common-sense knowledge from the corpus in a least supervised manner, making it a highly pausible solution to the response generation problem. In fact, the research community has made steady progress with the generative models. Vinyals et al. \cite{GoogleChatbot} applies the Seq2Seq model to generate responses to both technical queries in an IT helpdesk and open-ended questions such as \textit{what's the purpose of life?} and the results consistently beat a rule-based chatbot. However, generative models are not without problems. They inclined to give a meaningless response to the questions they are incapable to handle, such as \textit{I don't know what you're talking about} and like any chat-oriented systems, their evaluation remains an open problem.
 
-\section{Discussion}
-Conclusions from the experiment.
-Advice on using metrics.
+    At the beginning, researchers of generative systems borrow evaluative metrics from the machine translation community, especially the popular BLEU metric \cite{BLEU}. However the correlation of these borrowed metrics with human judgement in the context of the response generation remains unclear and researchers generally turn to human evaluation for greater accuracy and certainty. Later, Liu et al. \cite{HowNot} performs an empirical study on how well these automatic metrics correlate with human judgement. They concludes that the metrics only correlate weakly with human judgement on the non-technical Twitter corpus and not at all on the technical Ubuntu Dialogue Corpus \cite{ubuntu_corpus}.
 
-\subsection*{Acknowledgements.}
+    \section{Related Work}
+    Related work on metrics.
 
-\bibliographystyle{splncs04}
-\bibliography{data/all}
+    \section{Experiment Setup}
+    Explain the metrics, models and datasets we used.
+
+    \subsection{Metrics}
+    Introduce metrics, one per paragraph.
+    \paragraph{BLEU.}
+    \paragraph{METEOR.}
+    \paragraph{ROUGE.}
+
+    \paragraph{Greedy Matching.}
+    \paragraph{Embedding Average.}
+    \paragraph{Vector Extrema.}
+
+    \paragraph{Distinct-N.}
+    \paragraph{Utterance length.}
+
+    \subsection{Models}
+    Introduce models, one per paragraph.
+    \paragraph{LSTM language model.}
+    \paragraph{HRED.}
+    \paragraph{VHRED.}
+
+    \subsection{Datasets}
+    Introduce datasets, one per paragraph.
+    \paragraph{Ubuntu Dialogue Corpus}
+    \paragraph{OpenSubtitles}
+    \paragraph{LSDSCC}
+
+
+    \section{Experimental Study}
+    \paragraph{Statistical Analysis.}
+    Display the clustering of metrics through multiple perspectives,
+    such as the similarity of their distribution plots, tables of Pearson and Spearman Correlation
+    and the visualization outcomes of a certain clustering algorithm.
+
+    \paragraph{Qualitative Analysis.}
+    Display and analyze some examples where different metrics disagree greatly.
+    For example, a response with no n-gram overlap will get zero BLEU but if it is semantically
+    relevant to the message or reference, embedding-based metric will give it a high score.
+
+    \section{Discussion}
+    Conclusions from the experiment.
+    Advice on using metrics.
+
+    \subsection*{Acknowledgements.}
+
+    \bibliographystyle{splncs04}
+    \bibliography{data/all}
 
 \end{document}
