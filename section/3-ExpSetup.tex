@@ -1,0 +1,86 @@
+\section{Experiment Setup}
+Our experiment essentially involves training multiple generative models on multiple datasets, and then measure their performances with various automatic metrics. As stated, our study does not involve human evaluation. We also do not consider retrieval models as our interest falls on the more expressive generative models. Due to the constrains on time and resources, we limit our scope to three models and three datasets.
+
+To ease our demonstration, we define some symbols. A \emph{model} denoted as $m$ is an architecture of generative models, not an \emph{instance} of model trained on a specific dataset. A \emph{dataset} denoted as $d$ is a collection of context-response pairs from a specific domain, such as a social media or a technical support forum. A model predicts the response based on the context. A \emph{metric} denoted as $s$ is a function mapping a segment of words to a real value. The segment can be a sentence or a collection of sentences. The instance of model $m$ trained on dataset $d$ is denoted as $(m, d)$.
+
+\subsection{Metrics}
+We employ largely the same set of metrics studied by \cite{HowNot}, adding some novel ones from the recent literature. The word overlap and word embedding metrics, despite their issues with response generation, are studied again for more insights to their low performaces.
+
+\paragraph{BLEU.}
+BLEU \cite{BLEU} is a classical metric in the machine translation field that reports a high correlation with human scores on the system level. It owes the quality of a hypothesis to its similarity to a number of references and computes the similarity by accumulating n-gram precision of consecutive orders with the geometric mean, normalized by a brevity penalty.
+\begin{align}
+    p_n &= \frac{ |C_n \cap R_n| }{ |R_n| } \\
+    \textit{BP} &=
+    \begin{cases}
+        \ 1 \ & \text{if} \  c > r \\
+        \ e^{1 - r/c} \ & \text{otherwise} \\
+    \end{cases} \\
+    \textit{BLEU} &=
+    \textit{BP} \cdot \exp \left( \sum_{n=1}^N w_n \log p_n \right)
+\end{align}
+$p_n$ is the n-gram precision for order $n$. $C_n$ is a multiset of n-gram from a hypothesis while $R_n$ is the union of multisets of n-gram from each reference. $\textit{BP}$ is the brevity penalty. $c$ and $r$ are the length of the hypothesis and the effective length\footnote{The effective length of a collection of references is the length closest to that of the hypothesis.} of the references, respectively. $N$ is the total number of orders to compute n-gram precision for and a common choice is 4. $w_n$ is a weighting factor that usually takes the uniform weight $1 / N$.
+
+\paragraph{METEOR.}
+METEOR \cite{METEOR} is a metric proposed to address several issues with BLEU. It applies multiple stages of unigram matching to the hypothesis and reference, each using a different criterion, such as exact matching, WordNet synonyms, and paraphrases. An alignment is then created from these unigram matches. The score is based on the F1 score of the alignment and a penalty on shorter matches.
+
+\paragraph{ROUGE.}
+ROUGE \cite{ROUGE} is a family of metrics for automatic summarization. It defines a framework based on the F1 score and can integrate different matching units. For example, ROUGE-N uses n-gram as matching unit and ROUGE-L uses the longest common subsequence. The common form of ROUGE is:
+\begin{align}
+    \textit{ROUGE} = \frac{
+    R \cdot P
+    }{(1 - \alpha) P + \alpha R}
+\end{align}
+with $R$ being the recall and $P$ being the precision. $\alpha$ controls the relative importance of $R$ and $P$, and it should be a large value if only recall is considered.
+
+\paragraph{Embedding Average.}
+Embedding Average is a metric based on word embedding, a distributed approach to the meaning of words \cite{word2vec}. The embedding of a sentence is defined as the average of the embeddings of its composing words. The similarity of two sentences is then simply defined as the cosine of the corresponding vectors:
+
+\paragraph{Vector Extrema.}
+Vector Extrema \cite{Vector_Extrema} composes the sentence embedding by taking the most extreme value (either maximum or minimum) along each dimension from its constituted words. The intuition is that in the embedding space, common words like function words are pulled towards the origin as they appear in the context of many different words, while informative words are pushed away from the origin in either positive or negative direction, since they tend to appear in more specific context. By taking the most extreme values from the embeddings of the constituted words, this method essentially captures the most informative words of a sentence and ignore common words.
+
+\paragraph{Greedy Matching.}
+Greedy Matching \cite{GreedyAndOptimal} is an embedding-based method without explicitly calculating a sentence vector. Instead, the two sentences under comparison are treated as a weighted bipartite graph, with their words as nodes and the embedding cosine of a pair of words $(w, w')$ as the weight of this edge. Greedy Matching is based on a greedy method to solve the optimal matching problem:
+\begin{align}
+    G(r, \hat{r}) = \frac{
+    \sum_{w \in r} \max_{\hat{w} \in \hat{r}} \cos(e_w, e_{\hat{w}})
+    }{ |r| } \\
+    \textit{Greedy-Matching} = \frac{
+    G(r, \hat{r}) + G(\hat{r}, r)
+    }{2}
+\end{align}
+where $r$ and $\hat{r}$ are the reference and response, respectively.
+
+\paragraph{ADEM}
+ADEM \cite{ADEM} is based on a nueral network, which is trained on a conversation corpus with human-annotated scores. The model first embeds the input into a low-rank vector space and then predicts a human score with a linear combination of the embeddings for a context $c$, response $\hat{r}$, and reference $r$.
+\begin{align}
+    s(c, r, \hat{r}) = \frac{(c^T M \hat{r} + r^T N \hat{r} - \alpha)}{\beta}
+\end{align}
+$M, N$ are learnable parameters of the network and $\alpha, \beta$ are constants to normalize the output of the network to the five-point score. The model is trained end-to-end to minimize a squared error with a L2 regularization term:
+\begin{align}
+    L = \sum_{i=1}^{K} (s_i - h_i)^2 + \gamma \left\| \theta \right\| _2
+\end{align}
+where $K$ is the number of samples in a batch. $s_i$ and $h_i$ are the score predicted by the model and the score labeled by human, respectively. $\theta$ is the parameters of the network and $\gamma$ is the regularization factor.
+
+\paragraph{Distinct-N.}
+Distinct-N \cite{MMI} measures the rate of unique n-grams of a sentence. For a sentence, it is the size of the set of the n-grams (each n-gram appears only once) divided by the total number of n-grams. It measures the diversity of a response at the token level.
+
+\subsection{Models}
+We choose the models used in \cite{VHRED}, namely LSTM, HRED, and VHRED. These models are either derived from the LSTM recurrent neural network \cite{LSTM} or extensions to the standard Seq2Seq framework. As such, they are ideal representatives of the generative models and have been widely used as baselines in various settings.
+
+\paragraph{LSTM.}
+The LSTM model is a simple generative model with a single RNN acting as both an encoder and a decoder. For an input sequence $X = x_1, x_2, \dots, x_n$ and an output sequence $Y = y_1, y_2, \dots y_m$, the model predicts $Y_t$ at time step $t$ conditioned on $X_t$, as shown in figure \ref{fig:LSTM_as_generative}.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figure/LSTM_as_generative.pdf}
+    \caption{LSTM as a generative model}
+    \label{fig:LSTM_as_generative}
+\end{figure}
+
+\paragraph{HRED.}
+\paragraph{VHRED.}
+
+\subsection{Datasets}
+Introduce datasets, one per paragraph.
+\paragraph{Ubuntu Dialogue Corpus}
+\paragraph{OpenSubtitles}
+\paragraph{LSDSCC}
