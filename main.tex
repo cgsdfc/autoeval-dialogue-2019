@@ -41,7 +41,7 @@
 
     As an advanced technique to implement the chat-oriented system, the generative model based on neural network architecture feature end-to-end training with minimal hard-coded features and fluent human-like output sentences. Given a large corpus of context-response pairs, these neural models can learn language patterns and extract common-sense knowledge from the corpus in an unsupervised manner, making it a highly plausible solution to the response generation problem. The research community has made steady progress with the generative models. Vinyals et al. \cite{GoogleChatbot} apply the Seq2Seq model \cite{Seq2Seq} to generate responses to both technical queries in an IT helpdesk and open-ended questions such as \textit{what's the purpose of life?} and their model consistently beats a rule-based chatbot. However, generative models are not without problems. They inclined to give a meaningless response to the questions they are incapable to handle, such as \textit{I don't know what you're talking about} and like any chat-oriented systems, their evaluation remains an open problem.
 
-    Previous works of generative dialogue systems start by borrowing automatic metrics from the machine translation community, such as the popular BLEU \cite{BLEU} and METEOR \cite{METEOR}. However, the correlation between these borrowed metrics and human judgments remains unclear and researchers generally turn back to human evaluation for better accuracy and reliability \cite{Shang,DCGM,VHRED}. Liu et al. perform an empirical study on how well these automatic metrics correlate with human judgments \cite{HowNot}. They conclude that the metrics only correlate weakly with human judgments on the non-technical Twitter corpus and not at all on the technical Ubuntu Dialogue Corpus \cite{ubuntu_corpus}. The conclusion urges against the use of these metrics and calls for the development of new automatic metrics that are more relevant to human judgments.
+    Previous works of generative dialogue systems start by borrowing automatic metrics from the machine translation community, such as the popular BLEU \cite{BLEU} and METEOR \cite{METEOR}. However, the correlation between these borrowed metrics and human judgments remains unclear and researchers generally turn back to human evaluation for better accuracy and reliability \cite{Shang,DCGM,VHRED}. Liu et al. perform an empirical study on how well these automatic metrics correlate with human judgments \cite{HowNot}. They conclude that the metrics only correlate weakly with human judgments on the non-technical Twitter corpus and not at all on the technical Ubuntu Dialogue Corpus \cite{ubuntu_corpus}. They urges against the use of these metrics and calls for the development of new automatic metrics that are more relevant to human judgments.
 
     In this paper, we extend the work of Liu et al. and investigate the behaviors of automatic metrics when human judgments is not available. In particular, we highlight the drawbacks of existing metrics by trying to compare system performance purely based on them and show how inconsistent the results can be. Besides, we draw samples from the per-utterance scores of different metrics and analyze the pairwise correlation of these samples. We find that some pairs of samples have a high correlation, while other pairs show a much lower one. Following this observation, we cluster the metrics based on the correlation of their corresponding samples. The results show that metrics based on the same set of features tend to cluster together, indicating a high pairwise correlation within the same group. Our experimental results show yet another pitfall of using automatic metrics that the results from different metrics have the risk of high inconsistency if they don't happen to be in the same group. We therefore strongly advise researchers to wisely choose their metric to use to promote the comparison across different models and datasets.
 
@@ -68,7 +68,7 @@
     We employ largely the same set of metrics studied by \cite{HowNot}, adding some novel ones found in the literature. The word overlap metrics, in spite of their issues with response generation, are still included as a baseline.
 
     \paragraph{BLEU.}
-    BLEU \cite{BLEU }is a classical metric in the machine translation field that reports a high correlation with human scores on the system level. It owes the quality of a hypothesis to its similarity to a number of references and computes the similarity by accumulating n-gram precision of consecutive orders with geometric mean, normalized by a brevity penalty.
+    BLEU \cite{BLEU} is a classical metric in the machine translation field that reports a high correlation with human scores on the system level. It owes the quality of a hypothesis to its similarity to a number of references and computes the similarity by accumulating n-gram precision of consecutive orders with geometric mean, normalized by a brevity penalty.
     \begin{align}
         p_n &= \frac{ |C_n \cap R_n| }{ |R_n| } \\
         \textit{BP} &=
@@ -85,6 +85,13 @@
     METEOR \cite{METEOR} is a metric proposed to address several issues with BLEU. It applies multiple stages of unigram matching to the hypothesis and reference, each using a different criterion, such as exact matching, WordNet synonyms, and paraphrases. An alignment is created from the unigram matches and the final score is based on the F1 score of the alignment and a penalty on shorter matches.
 
     \paragraph{ROUGE.}
+    ROUGE \cite{ROUGE} is a family of metrics for automatic summarization. It defines a framework based on the F1 score and can integrate different matching units. For example, ROUGE-N uses n-gram as matching unit and ROUGE-L uses the longest common subsequence. The common form of ROUGE takes that of the F1 score
+    \begin{align}
+        \textit{ROUGE} = \frac{
+        R \cdot P
+        }{(1 - \alpha) P + \alpha R}
+    \end{align}
+    with $R$ being the recall and $P$ being the precision. $\alpha$ controls the relative importance of them, and it should be a large value if only recall is considered.
 
     \paragraph{Greedy Matching.}
     \paragraph{Embedding Average.}
