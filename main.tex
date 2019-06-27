@@ -112,17 +112,18 @@
     where $r$ and $\hat{r}$ are the reference and response, respectively.
 
     \paragraph{ADEM}
-    The ADEM \cite{ADEM} metric is powered by a neural network trained on a conversation corpus with human annotated scores. The model first embeds the input into a low-rank vector space and then predict a supervised score label with a linear combination of the embeddings for a context $c$, response $\hat{r}$, and reference $r$.
+    The ADEM \cite{ADEM} metric is based on a nueral network, which is trained on a conversation corpus with human-annotated scores. The model first embeds the input into a low-rank vector space and then predicts a human score with a linear combination of the embeddings for a context $c$, response $\hat{r}$, and reference $r$.
     \begin{align}
         s(c, r, \hat{r}) = \frac{(c^T M \hat{r} + r^T N \hat{r} - \alpha)}{\beta}
     \end{align}
-    $M, N$ are learnable parameters of the network and $\alpha, \beta$ are constants to normalize the output of the network to the five-point score. The model is trained end-to-end minimizing a squared error objective function with L2 regularization.
+    $M, N$ are learnable parameters of the network and $\alpha, \beta$ are constants to normalize the output of the network to the five-point score. The model is trained end-to-end minimizing a squared error objective function with L2 regularization:
     \begin{align}
-        L = \sum_{i=1}^{K} [s_i - h_i]^2 + \gamma \left\| \theta \right\| _2
+        L = \sum_{i=1}^{K} (s_i - h_i)^2 + \gamma \left\| \theta \right\| _2
     \end{align}
     where $K$ is the number of samples in a batch. $s_i$ and $h_i$ are the score predicted by the model and the score labeled by human, respectively. $\theta$ is the parameters of the network and $\gamma$ is the regularization factor.
 
     \paragraph{Distinct-N.}
+    Distinct-N \cite{MMI} measures the rate of unique n-grams of a sentence. For a sentence, it is simply the size of the set of the n-grams (each n-gram appears only once), divided by the total number of n-grams. It measures the diversity of a response at the token level.
 
     \subsection{Models}
     Introduce models, one per paragraph.
