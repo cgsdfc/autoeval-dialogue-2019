@@ -97,9 +97,19 @@
     Embedding Average is a metric based on word embedding, a distributed approach to the meaning of words \cite{word2vec}. The embedding of a sentence is defined as the average of the embeddings of its composing words. The similarity of two sentences is then simply defined as the cosine of the corresponding vectors.
 
     \paragraph{Vector Extrema.}
-    Vector Extrema composes the sentence embedding by taking the most extreme value (either maximum or minimum) along each dimension from its constituted words. The intuition is that in the embedding space, common words like function words are pulled towards the origin as they appear in the context of many different words, while informative words are pushed away from the origin in either positive or negative direction, since they tend to appear in more specific context \cite{Vector_Extrema}. By taking the most extreme values from the embeddings of the constituted words, this method essentially captures the informative content of a sentence and ignore common words.
+    Vector Extrema \cite{Vector_Extrema} composes the sentence embedding by taking the most extreme value (either maximum or minimum) along each dimension from its constituted words. The intuition is that in the embedding space, common words like function words are pulled towards the origin as they appear in the context of many different words, while informative words are pushed away from the origin in either positive or negative direction, since they tend to appear in more specific context. By taking the most extreme values from the embeddings of the constituted words, this method essentially captures the informative content of a sentence and ignore common words.
 
     \paragraph{Greedy Matching.}
+    Greedy Matching \cite{GreedyAndOptimal} is an embedding-based method without explicit calculation of a sentence vector. Instead, the two sentences under comparison are treated as a weighted bipartite graph, with their words as nodes and the embedding cosine of a pair of words $(w, w')$ as the weight on this edge. Greedy Matching is based on a greedy method that finds the optimal match.
+    \begin{align}
+        G(r, \hat{r}) = \frac{
+        \sum_{w \in r} \max_{\hat{w} \in \hat{r}} \cos(e_w, e_{\hat{w}})
+        }{ |r| } \\
+        \textit{Greedy-Matching} = \frac{
+        G(r, \hat{r}) + G(\hat{r}, r)
+        }{2}
+    \end{align}
+    where $r$ and $\hat{r}$ are the reference and response, respectively.
 
     \paragraph{ADEM}
 
