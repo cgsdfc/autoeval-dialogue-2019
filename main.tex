@@ -93,9 +93,14 @@
     \end{align}
     with $R$ being the recall and $P$ being the precision. $\alpha$ controls the relative importance of them, and it should be a large value if only recall is considered.
 
-    \paragraph{Greedy Matching.}
     \paragraph{Embedding Average.}
+    Embedding Average is a metric based on word embedding, a distributed approach to the meaning of words \cite{word2vec}. The embedding of a sentence is defined as the average of the embeddings of its composing words. The similarity of two sentences is then simply defined as the cosine of the corresponding vectors.
+
     \paragraph{Vector Extrema.}
+    Vector Extrema composes the sentence embedding by taking the most extreme value (either maximum or minimum) along each dimension from its constituted words. The intuition is that in the embedding space, common words like function words are pulled towards the origin as they appear in the context of many different words, while informative words are pushed away from the origin in either positive or negative direction, since they tend to appear in more specific context \cite{Vector_Extrema}. By taking the most extreme values from the embeddings of the constituted words, this method essentially captures the informative content of a sentence and ignore common words.
+
+    \paragraph{Greedy Matching.}
+
     \paragraph{ADEM}
 
     \paragraph{Distinct-N.}
