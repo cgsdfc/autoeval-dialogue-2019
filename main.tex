@@ -5,12 +5,13 @@
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{amsmath}
 
 \renewcommand\UrlFont{\color{blue}\rmfamily}
 % ---- Statistics ----- %
 % abstract: 132
 % Introduction: 554
-% Related Work: 398
+% Related Work: 589
 
 \begin{document}
     \title{Yet Another Problem of Automatic Evaluation of Generative Dialogue Systems}
@@ -59,18 +60,36 @@
     To understand why some metrics correlate poorly with human judgments, we try to show that there is a general inconsistency among these metrics. Intuitively, if a set of metrics have low pairwise correlations, it is less likely that all of them will correlate with human judgments highly, which indicates that some of them must correlate poorly with human judgments. Along this line of thought, we obtain an intermediate explanation to the poor performance of automatic metrics, backed by an empirical study. With this in mind, we can partially understand why these metrics fail and make improvements from the lesson we learned.
 
     \section{Experiment Setup}
-    Our experiment essentially involves training multiple generative models on multiple datasets, and then measure their performance with various automatic metrics. As stated, our study does not involve human evaluation. We also do not consider retrieval models as we focus on generative models exclusively. To ease our demonstration, we define some symbols. A \emph{model} denoted as $m$ is an architecture of generative models, not an \emph{instance} of model trained on a specific dataset. A \emph{dataset} denoted as $d$ is a collection of context-response pairs from a specific domain, such as a social media or a technical support forum. A model predicts the response based on the context. A \emph{metric} denoted as $s$ is a function that maps a segment of words to a real value. The segment can be a sentence or a collection of sentences. The model instance of architecture $m$ trained on dataset $d$ is denoted as $(m, d)$.
+    Our experiment essentially involves training multiple generative models on multiple datasets, and then measure their performance with various automatic metrics. As stated, our study does not involve human evaluation. We also do not consider retrieval models as our interest falls on the more expressive generative models. Due to the constrains on time and resources, we limit our scope of investigation to three models and three datasets.
 
+    To ease our demonstration, we define some symbols. A \emph{model} denoted as $m$ is an architecture of generative models, not an \emph{instance} of model trained on a specific dataset. A \emph{dataset} denoted as $d$ is a collection of context-response pairs from a specific domain, such as a social media or a technical support forum. A model predicts the response based on the context. A \emph{metric} denoted as $s$ is a function that maps a segment of words to a real value. The segment can be a sentence or a collection of sentences. The model instance of architecture $m$ trained on dataset $d$ is denoted as $(m, d)$.
 
     \subsection{Metrics}
-    Introduce metrics, one per paragraph.
+    We employ largely the same set of metrics studied by \cite{HowNot}, adding some novel ones found in the literature. The word overlap metrics, in spite of their issues with response generation, are still included as a baseline.
+
     \paragraph{BLEU.}
+    BLEU \cite{BLEU }is a classical metric in the machine translation field that reports a high correlation with human scores on the system level. It owes the quality of a hypothesis to its similarity to a number of references and computes the similarity by accumulating n-gram precision of consecutive orders with geometric mean, normalized by a brevity penalty.
+    \begin{align}
+        p_n &= \frac{ |C_n \cap R_n| }{ |R_n| } \\
+        \textit{BP} &=
+        \begin{cases}
+            \ 1 \ & \text{if} \  c > r \\
+            \ e^{1 - r/c} \ & \text{otherwise} \\
+        \end{cases} \\
+        \textit{BLEU} &=
+        \textit{BP} \cdot \exp \left( \sum_{n=1}^N w_n \log p_n \right)
+    \end{align}
+    $p_n$ is the n-gram precision for order $n$. $C_n$ is a multiset of n-gram from a hypothesis while $R_n$ is the union of multisets of n-gram from each reference. $\textit{BP}$ is the brevity penalty. $c$ and $r$ are the lengths of the hypothesis and reference, respectively. $N$ is the total number of orders to compute n-gram precision for and a common choice of it is 4. $w_n$ is a weighting factor that usually takes the uniform weight $1 / N$.
+
     \paragraph{METEOR.}
+    METEOR \cite{METEOR} is a metric proposed to address several issues with BLEU. It applies multiple stages of unigram matching to the hypothesis and reference, each using a different criterion, such as exact matching, WordNet synonyms, and paraphrases. An alignment is created from the unigram matches and the final score is based on the F1 score of the alignment and a penalty on shorter matches.
+
     \paragraph{ROUGE.}
 
     \paragraph{Greedy Matching.}
     \paragraph{Embedding Average.}
     \paragraph{Vector Extrema.}
+    \paragraph{ADEM}
 
     \paragraph{Distinct-N.}
     \paragraph{Utterance length.}
