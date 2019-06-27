@@ -139,7 +139,7 @@
     \end{figure}
 
     \paragraph{HRED.}
-    The HRED model is the hierarchical recurrent
+    The HRED model features a hierarchical encoding mechanism that takes into account the hierarchical structure of dialogues. For a dialogue $D$ with $M$ sentences: $D = U_1, U_2, \dots, U_M$, where each sentence $U_m$ consists of $N_m$ tokens: $U_m = w_{m, 1}, w_{m, 2}, \dots, w_{m, N_m}$, HRED first encodes each sentence with a \emph{utterance encoder} into a fixed-length utterance vector $e_u$. Then, these utterance vectors are processed iteratively by the \emph{context encoder} to produce a fixed-length context vector $e_d$. Finally, the \emph{utterance decoder} takes the context vector and generates the next utterance of the dialogue.
 
     \paragraph{VHRED.}
 
