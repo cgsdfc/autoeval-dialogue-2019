@@ -59,7 +59,8 @@
     To understand why some metrics correlate poorly with human judgments, we try to show that there is a general inconsistency among these metrics. Intuitively, if a set of metrics have low pairwise correlations, it is less likely that all of them will correlate with human judgments highly, which indicates that some of them must correlate poorly with human judgments. Along this line of thought, we obtain an intermediate explanation to the poor performance of automatic metrics, backed by an empirical study. With this in mind, we can partially understand why these metrics fail and make improvements from the lesson we learned.
 
     \section{Experiment Setup}
-    Explain the metrics, models and datasets we used.
+    Our experiment essentially involves training multiple generative models on multiple datasets, and then measure their performance with various automatic metrics. As stated, our study does not involve human evaluation. We also do not consider retrieval models as we focus on generative models exclusively. To ease our demonstration, we define some symbols. A \emph{model} denoted as $m$ is an architecture of generative models, not an \emph{instance} of model trained on a specific dataset. A \emph{dataset} denoted as $d$ is a collection of context-response pairs from a specific domain, such as a social media or a technical support forum. A model predicts the response based on the context. A \emph{metric} denoted as $s$ is a function that maps a segment of words to a real value. The segment can be a sentence or a collection of sentences. The model instance of architecture $m$ trained on dataset $d$ is denoted as $(m, d)$.
+
 
     \subsection{Metrics}
     Introduce metrics, one per paragraph.
