@@ -8,6 +8,7 @@
 \usepackage{amsmath}
 \usepackage{float}
 \usepackage{subcaption}
+\usepackage{color}
 
 \renewcommand\UrlFont{\color{blue}\rmfamily}
 % ---- Statistics ----- %
@@ -60,11 +61,18 @@
     Previous works that proposed enhanced metrics endeavored to answer the first question, while we try to shed some light on the second one. In particular, we are curious about what can we learn when the scores from different metrics are put together and compared across various settings.
 
     To understand why some metrics correlate poorly with human judgments, we show that there are general inconsistencies among these metrics. Intuitively, if a set of metrics have low pairwise correlations, it is less likely that all of them would correlate highly with human judgments, which indicates that some of them must correlate poorly with human judgments. Along this line of thought, we arrive at an intermediate explanation to the poor performance of automatic metrics, backed by an empirical study. With this in mind, we can partially understand why these metrics fail and make improvements from the lesson we learned.
+
+    % ----------------------------------- %
+    % --------- Experiment Setup ---------%
+    % ----------------------------------- %
     \section{Experiment Setup}
     Our experiment essentially involves training multiple generative models on multiple datasets, and then measure their performances with various automatic metrics. As stated, our study does not involve human evaluation. We also do not consider retrieval models as our interest falls on the more expressive generative models. Due to the constrains on time and resources, we limit our scope to three models and three datasets.
 
     To ease our demonstration, we define some symbols. A \emph{model} denoted as $m$ is an architecture of generative models, not an \emph{instance} of model trained on a specific dataset. A \emph{dataset} denoted as $d$ is a collection of context-response pairs from a specific domain, such as a social media or a technical support forum. A model predicts the response based on the context. A \emph{metric} denoted as $s$ is a function mapping a segment of words to a real value. The segment can be a sentence or a collection of sentences. The instance of model $m$ trained on dataset $d$ is denoted as $(m, d)$.
 
+    % ------------------------- %
+    % --------- Metrics --------%
+    % ------------------------- %
     \subsection{Metrics}
     We employ largely the same set of metrics studied by \cite{HowNot}, adding some novel ones from the recent literature. The word overlap and word embedding metrics, despite their issues with response generation, are studied again for more insights to their low performaces.
 
@@ -126,6 +134,9 @@
     \paragraph{Distinct-N.}
     Distinct-N \cite{MMI} measures the rate of unique n-grams of a sentence. For a sentence, it is the size of the set of the n-grams (each n-gram appears only once) divided by the total number of n-grams. It measures the diversity of a response at the token level.
 
+    % ------------------------- %
+    % --------- Models ---------%
+    % ------------------------- %
     \subsection{Models}
     We choose the models used in \cite{VHRED}, namely LSTM, HRED, and VHRED. These models are either derived from the LSTM recurrent neural network \cite{LSTM} or extensions to the standard Seq2Seq framework. As such, they are ideal representatives of the generative models and have been widely used as baselines in various settings.
 
@@ -144,12 +155,19 @@
     \paragraph{VHRED.}
     The VHRED model \cite{VHRED} extends the HRED model with a variational inference mechanism. Essentially, VHRED injects into the utterance decoder a random variable sampled from a high-dimension normal distribution, whose parameters are conditioned on the context vector $e_d$. With the randomness at the decoder, VHRED is able to model the uncertainty and ambiguity in the dialogues, generating more diverse responses.
 
+    % --------------------------- %
+    % --------- Datasets ---------%
+    % --------------------------- %
     \subsection{Datasets}
-    Introduce datasets, one per paragraph.
-    \paragraph{Ubuntu Dialogue Corpus}
-    \paragraph{OpenSubtitles}
-    \paragraph{LSDSCC}
+    To observe a general phenomenon, we choose datasets from a variety of domains. Specifically, the technical domain is selected because it contains a lot of rare words and requires technical knowledge. The movie domain is selected for its fiction nature and dependencies on story backgrounds. The forum domain is selected since it reflects the disscusion around a specific topic with multiple participants.
 
+    \paragraph{Ubuntu Dialogue Corpus}
+    The Ubuntu Dialogue Corpus \cite{ubuntu_corpus} is a large-scale multi-turn dyadic technical corpus collected from the Ubuntu channel of an IRC network. It contains a lot of technical symbols, such as filesystem paths, commands, and URLs. Its technical nature with large number of examples helps construct data-driven applications for technical support.
+
+    \paragraph{OpenSubtitles}
+    The OpenSubtitles dataset \cite{opensub} is a large-scale monolingual corpus of movie subtitles. It is collected by the OPUS project \cite{OPUS} from the \emph{opensubtitles} website\footnote{\url{http://www.opensubtitles.org}}. It is noisy as its examples are inherently not of dialogue structure. In other words, there are no explicit turn-taking information or dialogue boundaries in it. Typically, the consecutive two utterances are treated as a context-response pair, as in \cite{GoogleChatbot}, \cite{MMI}, and \cite{persona}.
+
+    \paragraph{LSDSCC}
 
     \section{Experimental Study}
     \paragraph{Statistical Analysis.}
