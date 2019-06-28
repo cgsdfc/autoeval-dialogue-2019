@@ -187,6 +187,7 @@
     % ------------------------------------- %
     \section{Experimental Study}
     \subsection{System-Level Scores}
+    We first measured system-level scores for all settings, shown in table \ref{tab:system_scores}. For the sake of space, each name in the table is abbreviated to its unique prefix, such as BLEU to BL, ROUGE to RO, and METEOR to MET, etc. A system-level score reflects the average performance of a model trained on a dataset. For inherently system-level metrics such BLEU, we directly compute them, while for other metrics, we compute the arithmetic average of their utterance-level scores.
     \input{data/system_scores.tex}
 
     \section{Discussion}
