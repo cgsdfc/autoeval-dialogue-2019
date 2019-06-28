@@ -168,6 +168,7 @@
     The OpenSubtitles dataset \cite{opensub} is a large-scale monolingual corpus of movie subtitles. It is collected by the OPUS project \cite{OPUS} from the \emph{opensubtitles} website\footnote{\url{http://www.opensubtitles.org}}. It is noisy as its examples are inherently not of dialogue structure. In other words, there are no explicit turn-taking information or dialogue boundaries in it. Typically, the consecutive two utterances are treated as a context-response pair, as in \cite{GoogleChatbot}, \cite{MMI}, and \cite{persona}.
 
     \paragraph{LSDSCC}
+    LSDSCC \cite{LSDSCC} is a \emph{Large Scale Domain Specific Coversation Corpus} collected from the movie subreddit of the Reddit forum. It is believed that more specific domain can help avoid generating universal responses \cite{LSDSCC}. The authors applied dedicated cleansing procedures to the raw data to retain as much information as possible and used human annotations to ensure the quality of the corpus.
 
     \section{Experimental Study}
     \paragraph{Statistical Analysis.}
@@ -179,11 +180,11 @@
     Display and analyze some examples where different metrics disagree greatly.
     For example, a response with no n-gram overlap will get zero BLEU but if it is semantically
     relevant to the message or reference, embedding-based metric will give it a high score.
+
     \section{Discussion}
     Conclusions from the experiment.
     Advice on using metrics.
-    \subsection*{Acknowledgements.}
-    This work was done when the author has just graduated from Beihang University. The continuous support from the laboratory of Beihang University is the key to the completion of the work. The author also appreciates the encouragement and advice from his tutor Wenge Rong, an associate professor at Beihang University.
+
     \subsection*{Acknowledgements.}
     This work was done when the author has just graduated from Beihang University. The continuous support from the laboratory of Beihang University is the key to the completion of the work. The author also appreciates the encouragement and advice from his tutor Wenge Rong, an associate professor at Beihang University.
 
