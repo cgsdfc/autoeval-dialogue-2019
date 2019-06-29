@@ -187,10 +187,16 @@
     % ------------------------------------- %
     \section{Experimental Study}
     \subsection{System-Level Scores}
-    We first measured the system-level scores for all settings, shown in table \ref{tab:system_scores}. For the sake of space, each name in the table is abbreviated to its unique prefix, such as BLEU to BL, ROUGE to RO, and METEOR to MET, etc. A system-level score reflects the average performance of a model trained on a dataset. For inherently system-level metrics such BLEU, we directly compute them, while for other metrics, we compute the arithmetic average of their utterance-level scores.
-
-
+    We first measured the system-level scores for all settings, shown in table \ref{tab:system_scores}. For the sake of space, each name in the table is abbreviated to its unique prefix, such as BLEU to BL and ROUGE to RO, etc. The system-level score reflects the average performance of a model trained on a dataset. For metrics that does not have an explicit system-level definition, we took the arithmetic average of their example-level scores.
     \input{data/system_scores.tex}
+
+    The system-level scores of different metrics are strongly consistent per dataset in terms of the best performing model. On LSDSCC, for example, the HRED model constantly beats other models measured by all but one metrics (ROUGE-4), while on OpenSubtitles, the VHRED model wins the best of most of the metrics. The system-level score seems to be able to distinguish state-of-the-art models from baselines, as most of the metrics agree on which model is the best.
+
+    However, the consistency among the metrics does not necessarily lead to high correlation with human judgment, as observed in \cite{HowNot}. Moreover, the system-level score is calculated by accumulating over the example-level scores. Thus, it is possible that the inconsistency on the example-level is hidden away. We argue that the example-level scores should not be ignored as it contains richer information.
+
+    \subsection{Example-Level Scores}
+    For example-level scores, a matrix $M \in R^{N \times M}$ is calculated for each model instance, where $N$ is the number of examples and $M$ is the number of metrics. Each row $r_i$ of the matrix is the scores of all metrics for an exmple $e_i$, while each column $c_j$ is the values of a metric $s_j$ computed for all examples. All the metrics share the same set of examples within a matrix. Thus, the correlation of any two columns $c_i, c_j$ can be understood as how much the corresponding metrics $s_i, s_j$ agree on their shared examples. We thus compute the pairwise correlations of columns with a matrix and highlight the degree of correlation with a heatmap, shown in figure \ref{fig:corr_heatmap}
+  \input{data/heatmap.tex}
 
     \section{Discussion}
     Conclusions from the experiment.
