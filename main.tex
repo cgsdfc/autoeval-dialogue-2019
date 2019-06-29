@@ -200,7 +200,17 @@
 
     In figure \ref{fig:corr_heatmap}, a black cell means a zero correlation. A clear black cross can be spotted from each subfigure, dividing the area into four regions. This is caused by the fact that the Distinct-N metric shares a zero correlation with most of the other metrics. From the brighter regions we can discover some groups of metrics with high correlations inside each group. Specifically, we find that metrics based on word overlap tend to have high pairwise correlations, which can be explained by the fact that they all make use of the n-gram statistics somehow. It is confirming to observe that the ADEM metric, with a much higher correlation with human judgment, does not correlate with all the other metrics, which is naturally true due to the transitivity of the correlation relation.
 
-    To better observe the agreement and disagreement among the metrics, we apply a hierarachical clustering to the columns of the matrix $M$. A hierarachical clustering algorithm works by starting with a forest of nodes and iteratively joining them into larger clusters according to a \emph{metric} that defines the distance of two nodes and a \emph{method} that determines the distance of two clusters. In our case, we use the Pearson'R as the metric and
+    To better observe the agreement and disagreement among the metrics, we apply a hierarachical clustering to the columns of the matrix $M$. A hierarchical clustering algorithm works by starting with a forest of nodes and iteratively merge them into larger clusters according to a \emph{metric} that defines the distance of two nodes and a \emph{method} that determines the distance of two clusters, until the root cluster is created. In our case, we use Pearson'R as the metric and average as the method, which defines the cluster-level distance $d(u, v)$ as
+    \begin{align}
+        d(u, v) = \frac{\sum_{i,j}\texit{dist}(u[i], v[j])}{|u| \cdot |v|}
+    \end{align}
+    for point $u[i]$ in cluster $u$ and $v[j]$ in cluster $v$, with $\text{dist}(\cdot, \cdot)$ as the distance metric. $|u|$ and $|v|$ are the cardinalities of cluster $u$ and $v$, respectively.
+
+    With the clusterings shown in figure \ref{fig:hierarchy}, we can clearly observe a hierarchy of agreement among the metrics. The clusters that was created in the earlier iterations appear closer to the leaves of the tree, which indicates stronger agreements or higher pairwise correlations of the corresponding metrics.
+
+    %    and the overall clustering structure is similar across different settings.
+
+    \input{data/cluster.tex}
 
     \section{Discussion}
     Conclusions from the experiment.
