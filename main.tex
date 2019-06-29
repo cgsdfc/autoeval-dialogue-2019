@@ -192,7 +192,7 @@
     We first measured the system-level scores for all settings, shown in table \ref{tab:system_scores}. For the sake of space, each name in the table is abbreviated to its unique prefix, such as BLEU to BL and ROUGE to RO, etc. The system-level score reflects the average performance of a model trained on a dataset. For metrics that do not have an explicit system-level definition, we took the arithmetic average of their example-level scores.
     \input{data/system_scores.tex}
 
-    The system-level scores of different metrics are strongly consistent per dataset in terms of the best performing model. On LSDSCC, for example, the HRED model constantly beats other models measured by all but one metrics (ROUGE-4), while on OpenSubtitles, the VHRED model wins the best of most of the metrics. The system-level score seems to be able to distinguish state-of-the-art models from baselines, as most of the metrics agree on which model is the best.
+    The system-level scores of different metrics are strongly consistent per dataset in terms of the best performing model. On LSDSCC, for example, the HRED model beats other models on all but one metrics (ROUGE-4), while on OpenSubtitles, the VHRED model wins the best of most of the metrics. The system-level score seems to be able to distinguish state-of-the-art models from baselines, as most of the metrics agree on which model is the best.
 
     However, the consistency among the metrics does not necessarily lead to a high correlation with human judgment, as observed in \cite{HowNot}. Moreover, the system-level score is calculated by accumulating over the example-level scores. Thus, it is possible that the inconsistency on the example-level is hidden away. We argue that the example-level scores should not be ignored as it contains richer information.
 
@@ -202,21 +202,23 @@
 
     In figure \ref{fig:corr_heatmap}, a black cell means a zero correlation. A clear black cross can be spotted from each subfigure, dividing the area into four regions. This is caused by the fact that the Distinct-N metric shares a zero correlation with most of the other metrics. From the brighter regions, we can discover some groups of metrics with high correlations inside each group. Specifically, we find that metrics based on word overlap tend to have high pairwise correlations, which can be explained by the fact that they all make use of the n-gram statistics somehow. It is confirming to observe that the ADEM metric, with a much higher correlation with human judgment, does not correlate with all the other metrics, which is naturally true due to the transitivity of the correlation relation.
 
-    To better observe the agreement and disagreement among the metrics, we apply hierarchical clustering to the columns of the matrix $M$. A hierarchical clustering algorithm works by starting with a forest of nodes and iteratively merge them into larger clusters according to a \emph{metric} that defines the distance of two nodes and a \emph{method} that determines the distance of two clusters until the root cluster is created. In our case, we use Pearson's R as the metric and average as the method, which defines the cluster-level distance $d(u, v)$ as
+    To better observe the agreement and disagreement among the metrics, we apply hierarchical clustering to the columns of the matrix. A hierarchical clustering algorithm works by starting with a forest of nodes and iteratively merge them into larger clusters according to a \emph{metric} that defines the distance of two nodes and a \emph{method} that determines the distance of two clusters until the root cluster is created. In our case, we use Pearson's R as the metric and average as the method, which defines the cluster-level distance $d(u, v)$ as
     \begin{align}
         d(u, v) = \frac{\sum_{i,j}\texit{dist}(u[i], v[j])}{|u| \cdot |v|}
     \end{align}
     for point $u[i]$ in cluster $u$ and $v[j]$ in cluster $v$, with $\text{dist}(\cdot, \cdot)$ as the distance metric. $|u|$ and $|v|$ are the cardinalities of cluster $u$ and $v$, respectively.
     \input{data/cluster.tex}
 
-    With the clusterings shown in figure \ref{fig:hierarchy}, we observe a hierarchy of agreement among different metrics. The clusters that were created in the earlier iterations appear closer to the leaves of the tree, which indicates higher pairwise correlations or stronger inter-metric agreements of the corresponding metrics. Across all the settings, we generally observe these independent clusters:
+    With the clusterings in figure \ref{fig:hierarchy}, we observe a hierarchy of agreement among different metrics. The clusters that were created in the earlier iterations appear closer to the leaves of the tree, which indicates higher pairwise correlations or stronger inter-metric agreements. Across all the settings, we generally observe these independent clusters:
     \begin{enumerate}
-        \item Word-Overlap: a big cluster containing many subclusters formed by different word-overlap metrics, such as BLEU, ROUGE, and METEOR.
-        \item Word-Embedding: a small cluster that only contains the three embedding-based metrics we consider, namely Vector-Average, Vector-Extrema, and Greedy-Matching.
+        \item Word-Overlap: a large cluster containing many subclusters formed by different word-overlap metrics, such as BLEU, ROUGE, and METEOR.
+        \item Word-Embedding: a small cluster that contains Vector-Average, Vector-Extrema, and Greedy-Matching.
         \item Distinct-2 and \#words: a generally observable cluster, with underlying reason yet to know.
         \item ADEM: a standalone cluster formed by ADEM due to its high metric-human correlation.
         \item Distinct-1: a metric that might belong to some cluster or become a standalone cluster depending on the dataset involved.
     \end{enumerate}
+
+    \subsection{Qualitative Analysis}
 
 
     \section{Discussion}
