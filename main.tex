@@ -208,7 +208,6 @@
         d(u, v) &= \frac{\sum_{i,j}\textit{dist}(i, j)}{|u| \cdot |v|}
     \end{align}
     where $i$ and $j$ are points in cluster $u$ and $v$, respectively. $|u|$ and $|v|$ are the cardinalities of cluster $u$ and $v$, respectively\footnote{This is also known as the average method.}. We tried three correlation methods, namely Pearson's r, Spearman's r and Kendall's $\tau$ and observe similar results. For the sake of space, only the results of Pearson's r are displayed.
-    \input{data/hierarchy.tex}
 
     From figure \ref{fig:hierarchy}, we observe a hierarchy of agreement among different metrics. The clusters that were created in the earlier iterations appear closer to the leaves of the tree, which indicates higher pairwise correlations or stronger inter-metric agreements. Across all the settings, we generally observe these independent clusters:
     \begin{enumerate}
@@ -218,8 +217,10 @@
         \item ADEM: a standalone cluster formed by ADEM due to its high metric-human correlation.
         \item Distinct-1: a metric that might belong to some cluster or become a standalone cluster depending on the dataset involved.
     \end{enumerate}
+    \input{data/hierarchy.tex}
 
-    Those clusters confirm our hypothesis on the inconsistency among
+    Those clusters confirm our hypothesis on the inconsistency among different metrics. Luckily, there are still some forms of agreement that the same cluster of metrics can reach, due to odds or intrinsic reasons. Unfortunately, the exact reasons why the clusters are formed this way remain unclear. Although our experiments have a simple procedure, it should be noted that the mechanisms behind each step are very complex. For example, the dialogue datasets are intrinsically very diverse and the way the generative models work is not well-understood. Besides, it is also unclear how these metrics reflect the desirable properties of a response. Hence we can only conclude that similar metrics tend to be consistent on the example-level. The similarity of metrics generally refers to their mechanisms, such as the way they extract overlap unit or semantics from an utterance or the way different components are combined.
+
     \subsection{Qualitative Analysis}
 
 
