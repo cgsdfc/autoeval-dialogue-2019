@@ -202,7 +202,7 @@
 
     In figure \ref{fig:corr_heatmap}, a black cell means a zero correlation. A clear black cross can be spotted from each subfigure, dividing the area into four regions. This is caused by the fact that the Distinct-N metric shares a zero correlation with most of the other metrics. From the brighter regions, we can discover some groups of metrics with high correlations inside each group. Specifically, we find that metrics based on word overlap tend to have high pairwise correlations, which can be explained by the fact that they all make use of the n-gram statistics somehow. It is confirming to observe that the ADEM metric, with a much higher correlation with human judgment, does not correlate with all the other metrics, which is naturally true due to the transitivity of the correlation relation.
 
-    To better observe the agreement and disagreement among the metrics, we applied hierarchical clustering to the columns of the matrix. A hierarchical clustering algorithm starts with a forest of nodes and iteratively merges them into larger clusters until the root cluster is found. The node-level distance $\textit{dist}(\cdot, \cdot)$ and cluster-level distance $d(\cdot, \cdot)$ we used are defined as follow:
+    To better observe the agreement and disagreement among the metrics, we applied hierarchical clustering to the columns of the matrix and the results are shown in figure \ref{fig:hierarchy}. A hierarchical clustering algorithm starts with a forest of nodes and iteratively merges them into larger clusters until the root cluster is found. The node-level distance $\textit{dist}(\cdot, \cdot)$ and cluster-level distance $d(\cdot, \cdot)$ we used are defined as follow:
     \begin{align}
         \textit{dist}(i, j) &= 1 - \textit{corr}(i, j) \\
         d(u, v) &= \frac{\sum_{i,j}\textit{dist}(i, j)}{|u| \cdot |v|}
@@ -210,7 +210,7 @@
     where $i$ and $j$ are points in cluster $u$ and $v$, respectively. $|u|$ and $|v|$ are the cardinalities of cluster $u$ and $v$, respectively\footnote{This is also known as the average method.}. We tried three correlation methods, namely Pearson's r, Spearman's r and Kendall's $\tau$ and observe similar results. For the sake of space, only the results of Pearson's r are displayed.
     \input{data/hierarchy.tex}
 
-    With the clusterings in figure \ref{fig:hierarchy}, we observe a hierarchy of agreement among different metrics. The clusters that were created in the earlier iterations appear closer to the leaves of the tree, which indicates higher pairwise correlations or stronger inter-metric agreements. Across all the settings, we generally observe these independent clusters:
+    From figure \ref{fig:hierarchy}, we observe a hierarchy of agreement among different metrics. The clusters that were created in the earlier iterations appear closer to the leaves of the tree, which indicates higher pairwise correlations or stronger inter-metric agreements. Across all the settings, we generally observe these independent clusters:
     \begin{enumerate}
         \item Word-Overlap: a large cluster containing many subclusters formed by different word-overlap metrics, such as BLEU, ROUGE, and METEOR.
         \item Word-Embedding: a small cluster that contains Vector-Average, Vector-Extrema, and Greedy-Matching.
@@ -219,6 +219,7 @@
         \item Distinct-1: a metric that might belong to some cluster or become a standalone cluster depending on the dataset involved.
     \end{enumerate}
 
+    Those clusters confirm our hypothesis on the inconsistency among
     \subsection{Qualitative Analysis}
 
 
