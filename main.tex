@@ -190,6 +190,7 @@
     \subsection{System-Level Scores}
     We first measured the system-level scores for all settings, shown in table \ref{tab:system_scores}. For the sake of space, each name in the table is abbreviated to its unique prefix, such as BLEU to BL and ROUGE to RO, etc. The system-level score reflects the average performance of a model trained on a dataset. For metrics that do not have an explicit system-level definition, we took the arithmetic average of their example-level scores.
     \input{data/system_scores.tex}
+%    \input{data/sys.tex}
 
     The system-level scores of different metrics are strongly consistent per dataset in terms of the best performing model. On LSDSCC, for example, the HRED model beats other models on all but one metrics (ROUGE-4), while on OpenSubtitles, the VHRED model wins the best of most of the metrics. The system-level score seems to be able to distinguish state-of-the-art models from baselines, as most of the metrics agree on which model is the best.
 
