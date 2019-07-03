@@ -1,0 +1,53 @@
+\begin{table}
+    \centering
+    \caption{Model Configuration}
+    \label{tab:model_config}
+    \begin{subtable}{0.5\textwidth}
+        \centering
+        \caption{Utterance Encoder}
+        \begin{tabular}{|l|r|r|}
+            \hline
+            & {Embedding} & {\#Hidden Units} \\
+            \hline
+            LSDSCC & 400 & 1000 \\
+            \hline
+            OpenSubtitles & 400 & 1000 \\
+            \hline
+            Ubuntu & 300 & 500 \\
+            \hline
+        \end{tabular}
+    \end{subtable}%
+    \begin{subtable}{0.45\textwidth}
+        \centering
+        \caption{Context Encoder}
+        \begin{tabular}{|l|r|r|}
+            \hline
+            & RNN Direction & \#Hidden Units \\
+            \hline
+            LSDSCC & bidirectional & 1000 \\
+            \hline
+            OpenSubtitles & bidirectional & 1000 \\
+            \hline
+            Ubuntu & unidirectional & 1000 \\
+            \hline
+        \end{tabular}
+    \end{subtable}
+    \begin{subtable}{\textwidth}
+        \centering
+        \caption{Utterance Decoder}
+        \begin{tabular}{|l|*{7}{r|}}
+            \hline
+            & \multicolumn{3}{c|}{RNN Type}
+            & \multicolumn{3}{c|}{\#Hidden Units} \\
+            \hline
+            & HRED & LSTM & VHRED & HRED & LSTM & VHRED \\
+            \hline
+            LSDSCC & LSTM & GRU & GRU & 1000 & 2000 & 1000 \\
+            \hline
+            OpenSubtitles & LSTM & GRU & GRU & 1000 & 2000 & 1000 \\
+            \hline
+            Ubuntu & LSTM & LSTM & LSTM & 500 & 2000 & 500 \\
+            \hline
+        \end{tabular}
+    \end{subtable}
+\end{table}
