@@ -1,0 +1,48 @@
+\begin{table}
+    \caption{An Example from LSDSCC}
+    \centering
+    \begin{subtable}{\textwidth}
+        \centering
+        \caption{Context and Reference}
+        \begin{tabular}{|l|p{0.9\textwidth}|}
+            \hline
+            Context & are there very strong `` you should believe in god '' tones ? i ve been avoiding it because i ve been unsure </s> \\
+            \hline
+            Reference & at the beginning , yes at the end , complete opposite really unique film in that regard </s> \\
+            \hline
+        \end{tabular}
+    \end{subtable}
+    \begin{subtable}{\textwidth}
+        \centering
+        \caption{Responses and Scores}
+        \begin{tabular}{|l|*{3}{p{0.3\textwidth}|}}
+            \hline
+            & LSTM & HRED & VHRED \\
+            \hline
+            Response & spoilers sad & not anymore of course & i m a trailer and continuation of the plot in my mind \\
+            \hline
+            ADEM & 2.5939 & 2.6123 & 2.6213 \\
+            \hline
+            BLEU-1 & 0 & 0 & 0.1011 \\
+            \hline
+            Distinct-1 & 1.0 & 1.0 & 1.0 \\
+            \hline
+            Distinct-2 & 0.5 & 0.75 & 0.9167 \\
+            \hline
+            Greedy & 0.2 & 0.2966 & 0.3827 \\
+            \hline
+            Average & 0.2891 & 0.5239 & 0.5762 \\
+            \hline
+            Extrema & 0.2274 & 0.3266 & 0.2334 \\
+            \hline
+            METEOR & 0 & 0.0562 & 0.0191 \\
+            \hline
+            ROUGE-L & 0 & 0 & 0.1587 \\
+            \hline
+            ROUGE-W & 0 & 0 & 0.1272 \\
+            \hline
+            \#words & 2 & 4 & 12 \\
+            \hline
+        \end{tabular}
+    \end{subtable}
+\end{table}
