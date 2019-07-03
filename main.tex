@@ -163,7 +163,7 @@
     The VHRED model \cite{VHRED} extends the HRED model with a variational inference mechanism. Essentially, VHRED injects into the utterance decoder random variables that are sampled from a high-dimension normal distribution, the parameters of which are conditioned on the context vector $e_d$. With the randomness at the decoder, VHRED is able to model the uncertainty and ambiguity in the dialogues, generating more diverse responses \cite{A_Short_Review}.
 
     \paragraph{Training Procedure.}
-    We trained all the models with an Nvidia GTX for at least one week.
+    The configurations for different model components are shown in table \ref{tab:model_config}. We used Adam \cite{AdamOpt} as our optimizer and applied gradient clipping with a threshold of 1. The learning rate was set to 0.0002 on the Ubuntu corpus and 0.0002 on the others. All the models were trained on a Nvidia GTX for at least one week. We used random sampling when testing.
     \input{data/model_config.tex}
 
     % --------------------------- %

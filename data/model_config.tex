@@ -1,13 +1,13 @@
-\begin{table}
+\begin{table}[htb]
     \centering
-    \caption{Model Configuration}
+    \caption{Model Configurations}
     \label{tab:model_config}
     \begin{subtable}{0.5\textwidth}
         \centering
         \caption{Utterance Encoder}
         \begin{tabular}{|l|r|r|}
             \hline
-            & {Embedding} & {\#Hidden Units} \\
+            & {\#Embedding} & {\#Hidden Units} \\
             \hline
             LSDSCC & 400 & 1000 \\
             \hline
@@ -20,15 +20,15 @@
     \begin{subtable}{0.45\textwidth}
         \centering
         \caption{Context Encoder}
-        \begin{tabular}{|l|r|r|}
+        \begin{tabular}{|r|r|}
             \hline
-            & RNN Direction & \#Hidden Units \\
+            RNN Direction & \#Hidden Units \\
             \hline
-            LSDSCC & bidirectional & 1000 \\
+            bidirectional & 1000 \\
             \hline
-            OpenSubtitles & bidirectional & 1000 \\
+            bidirectional & 1000 \\
             \hline
-            Ubuntu & unidirectional & 1000 \\
+            unidirectional & 1000 \\
             \hline
         \end{tabular}
     \end{subtable}
