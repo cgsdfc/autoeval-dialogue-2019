@@ -223,10 +223,10 @@
     Specifically, we find that metrics based on word overlap tend to have high pairwise correlations, due to the fact that they all make use of the n-gram statistics somehow. On the other hand, it is confirming to observe that ADEM does not correlate with all the other metrics, since it has a much higher correlation with human judgment while other metrics do not.
 
     \subsection{Qualitative Analysis}
+    \input{data/example/OpenSubtitles.tex}
+    Table \ref{tab:Example_OpenSubtitles} serves as an example of the inter-metrics inconsistency. The response from HRED mentions `her room', which is relative to the subject `she' in the context and the `starts' matches the `start' in the reference, which is captured by the stemming module of METEOR. The response from VHRED does not share any token with the context or reference, but it makes a remark to the event mentioned by the context so it is quite a reasonable one.
 
-    %    \input{data/example/LSDSCC.tex}
-    %    \input{data/example/OpenSubtitles.tex}
-    %    \input{data/example/Ubuntu.tex}
+    All three responses share no n-grams with either the context or the reference so all the word-overlap metrics yield a zero value. However, all the word-embedding metrics give non-zero value, making them incompatible with the word-overlap metrics. In terms of semantic relevance, the responses from HRED and VHRED are equally better than that from LSTM, but the ranks given by the word-embedding metrics do not agree with our manual inspection. For example, Greedy, Average and Extrema all give higher score to LSTM than HRED.
 
     \section{Discussion}
 
