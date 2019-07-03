@@ -228,10 +228,14 @@
 
     All three responses share no n-grams with either the context or the reference so all the word-overlap metrics yield a zero value. However, all the word-embedding metrics give non-zero value, making them incompatible with the word-overlap metrics. In terms of semantic relevance, the responses from HRED and VHRED are equally better than that from LSTM, but the ranks given by the word-embedding metrics do not agree with our manual inspection. For example, Greedy, Average and Extrema all give higher score to LSTM than HRED.
 
-    \section{Discussion}
+    \section{Conclusion}
+    In the paper, we present a detailed analysis of the correlations of different automatic metrics across different settings. We observe a relatively high correlation on the system-level and a correlation-based clustering phenomenon on the example-level. Despite the complex nature of the response generation process, scores from similar metrics tend to correlate better with one another, opening up the possibility to build high-quality metrics by resembling the behaviors of human judgments.
+
+    On the other hand, our research partially explains why some of the metrics correlate poorly with human judgment. Although the way human judge a dialogue is still a black box, scores from different human judges are highly correlated, as shown in \cite{HowNot}.
 
     \paragraph{Implication}
-
+    \paragraph{Suggestion}
+    \paragraph{Future Work}
 
     \subsection*{Acknowledgements.}
     This work was supported by the Engineering Research Center of Ministry of Education for Advanced Computer Application Technology (ACAREC) of Beihang University. We also appreciate the advice from anonymous reviewers.

@@ -2,48 +2,37 @@
     \caption{An Example from OpenSubtitles}
     \label{tab:Example_OpenSubtitles}
     \centering
-    \begin{subtable}{\textwidth}
-        \centering
-        \caption{Context and Reference}
-        \begin{tabular}{|l|p{0.65\textwidth}|}
-            \hline
-            Context & you il be in classes does she know that ? </s> as if you re gonna have all this free time to pal around with her </s> \\
-            \hline
-            Reference & okay sure we il start there </s> \\
-            \hline
-        \end{tabular}
-    \end{subtable}
-    \begin{subtable}{\textwidth}
-        \centering
-        \caption{Responses and Scores}
-        \begin{tabular}{|l|*{3}{p{0.2\textwidth}|}}
-            \hline
-            & LSTM & HRED & VHRED \\
-            \hline
-            Response & c all this time & her room starts in half 50 percent & i figured this was gonna be a fun stretch \\
-            \hline
-            ADEM & 2.5987 & \textbf{2.6411} & 2.6276 \\
-            \hline
-            BLEU-1 & 0 & 0 & 0 \\
-            \hline
-            Distinct-1 & 1.0 & 1.0 & 1.0 \\
-            \hline
-            Distinct-2 & 0.75 & 0.8571 & \textbf{0.8889} \\
-            \hline
-            Greedy & \textbf{0.3520} & 0.2336 & 0.3412 \\
-            \hline
-            Average & 0.4979 & 0.3468 & \textbf{0.6607} \\
-            \hline
-            Extrema & 0.2791 & 0.1341 & \textbf{0.3995} \\
-            \hline
-            METEOR & 0 & \textbf{0.0105} & 0 \\
-            \hline
-            ROUGE-L & 0 & 0 & 0 \\
-            \hline
-            ROUGE-W & 0 & 0 & 0 \\
-            \hline
-            \#words & 4 & 7 & \textbf{9} \\
-            \hline
-        \end{tabular}
-    \end{subtable}
+    \begin{tabular}{|l|*{3}{p{0.2\textwidth}|}}
+        \hline
+        Context & \multicolumn{3}{p{0.64\textwidth}|}{you il be in classes does she know that ? </s> as if you re gonna have all this free time to pal around with her </s>} \\
+        \hline
+        Reference & \multicolumn{3}{p{0.64\textwidth}|}{okay sure we il start there </s>} \\
+        \hline
+        Model & LSTM & HRED & VHRED \\
+        \hline
+        Response & c all this time & her room starts in half 50 percent & i figured this was gonna be a fun stretch \\
+        \hline
+        ADEM & 2.5987 & \textbf{2.6411} & 2.6276 \\
+        \hline
+        BLEU-1 & 0 & 0 & 0 \\
+        \hline
+        Distinct-1 & 1.0 & 1.0 & 1.0 \\
+        \hline
+        Distinct-2 & 0.75 & 0.8571 & \textbf{0.8889} \\
+        \hline
+        Greedy & \textbf{0.3520} & 0.2336 & 0.3412 \\
+        \hline
+        Average & 0.4979 & 0.3468 & \textbf{0.6607} \\
+        \hline
+        Extrema & 0.2791 & 0.1341 & \textbf{0.3995} \\
+        \hline
+        METEOR & 0 & \textbf{0.0105} & 0 \\
+        \hline
+        ROUGE-L & 0 & 0 & 0 \\
+        \hline
+        ROUGE-W & 0 & 0 & 0 \\
+        \hline
+        \#words & 4 & 7 & \textbf{9} \\
+        \hline
+    \end{tabular}
 \end{table}
