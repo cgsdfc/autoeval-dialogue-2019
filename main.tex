@@ -175,14 +175,14 @@
     In this research, we select three commonly used datasets, the statistics of which are listed in table \ref{tab:dataset_stats}. These datasets represent common domains in the literature, namely technical support, movie subtitles and online forums.
     \input{data/dataset_stats.tex}
 
-    \paragraph{Ubuntu Dialogue Corpus}
-    The Ubuntu Dialogue Corpus \cite{ubuntu_corpus} is a large-scale multi-turn dyadic technical corpus collected from the Ubuntu channel of an IRC network. It contains a lot of technical symbols, such as filesystem paths, commands, and URLs. Its technical nature with large number of examples helps construct data-driven applications for technical support.
+    \paragraph{Ubuntu Dialogue Corpus.}
+    The Ubuntu Dialogue Corpus \cite{ubuntu_corpus} is a large-scale multi-turn dyadic technical corpus collected from the Ubuntu channel of an IRC network\footnote{\url{https://irclogs.ubuntu.com/}}. It contains a lot of technical symbols, such as filesystem paths, commands, and URLs. Its large-scale nature helps construct data-driven applications for technical support.
 
-    \paragraph{OpenSubtitles}
-    The OpenSubtitles dataset \cite{opensub} is a large-scale monolingual corpus of movie subtitles. It is collected by the OPUS project \cite{OPUS} from the \emph{opensubtitles} website\footnote{\url{http://www.opensubtitles.org}}. It is noisy as its examples are inherently not of dialogue structure. In other words, there are no explicit turn-taking information or dialogue boundaries in it. Typically, the consecutive two utterances are treated as a context-response pair, as in \cite{GoogleChatbot}, \cite{MMI}, and \cite{persona}.
+    \paragraph{OpenSubtitles.}
+    The OpenSubtitles dataset \cite{opensub} is an enormous corpus of movie subtitles. It is collected by the OPUS project \cite{OPUS} from the opensubtitles website\footnote{\url{http://www.opensubtitles.org}}. It is noisy as the examples are inherently not of dialogue structure. In other words, there are no explicit turn-taking information or dialogue boundaries in it. Typically, two consecutive utterances are treated as a context-response pair, as in \cite{GoogleChatbot}, \cite{MMI}, and \cite{persona}.
 
-    \paragraph{LSDSCC}
-    LSDSCC \cite{LSDSCC} is a \emph{Large Scale Domain-Specific Conversation Corpus} collected from the movie subreddit of the Reddit forum. It is believed that a more specific domain can help avoid generating universal responses \cite{LSDSCC}. The authors applied dedicated cleansing procedures to the raw data to retain as much information as possible. They also used human annotations to ensure the quality of the corpus.
+    \paragraph{LSDSCC.}
+    LSDSCC \cite{LSDSCC} is a \emph{Large Scale Domain-Specific Conversation Corpus} collected from the movie subreddit of the Reddit forum\footnote{\url{https://www.reddit.com/r/datasets}}. It is believed that a more specific domain can help avoid generating universal responses \cite{LSDSCC}. The authors applied dedicated cleansing procedures to retain as much information as possible. They also used human annotations to ensure the quality of the corpus.
 
     % ------------------------------------- %
     % --------- Experimental Study -------- %
