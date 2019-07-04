@@ -1,15 +1,49 @@
-# Use the latest 2.1 version of CircleCI pipeline processing engine, see https://circleci.com/docs/2.0/configuration-reference/
-version: 2.1
+version: 2
 
-# Use a package of configuration called an orb, see https://circleci.com/docs/2.0/orb-intro/
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.3.1
+executors:
+  my-executor:
+    working_directory: /root
 
-# Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
+jobs:
+  build:
+    environment:
+    docker:
+      - image: teruo41/ubuntu-texlive:latest
+    steps:
+      - checkout
+      - run:
+          command: |
+            latexmk main
+      - persist_to_workspace:
+          root: /root
+          paths:
+            - project
+  publish-github-release:
+    docker:
+      - image: cibuilds/github:0.10
+    steps:
+      - attach_workspace:
+          at: /root
+      - run:
+          name: "Publish Release on GitHub"
+          command: |
+            cd /root/project/papers/${TARGET_DIR}
+            cp main.pdf main_${CIRCLE_TAG}.pdf
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_TAG} ,main_${CIRCLE_TAG}.pdf
+
 workflows:
-  # Name the workflow "Welcome"
-  Welcome:
-    # Run the welcome/run job in its own container
+  version: 2
+  main:
     jobs:
-      - welcome/run
+      - build:
+          filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+      - publish-github-release:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^\d+\.\d+\.\d+$/
