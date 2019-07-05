@@ -17,7 +17,7 @@ Here are some useful links related to this project:
 - My graduate design done at Beihang University is at [GraduateDesign](https://github.com/cgsdfc/GraduateDesign.git), which is the origin of this work.
 - This work is mainly inspired by the work of Liu et al., namely *How NOT to Evaluate Your Dialogue Systems: An Empirical Study of Unsupervised Evaluation Metrics for Dialogue Response Generation*.
 - My fork of the wonderful generative models created by Serban et al. is at [HRED-VHRED](https://github.com/cgsdfc/HRED-VHRED.git). The original project can be found [here](https://github.com/julianser/hed-dlg-truncated.git).
-- My fork of the wonderful but messy codebase of Li et al. is at [Neural-Dialogue-Generation](https://github.com/cgsdfc/Neural-Dialogue-Generation.git). he original project can be found [here](he original project can be found [here])
+- My fork of the wonderful but messy codebase of Li et al. is at [Neural-Dialogue-Generation](https://github.com/cgsdfc/Neural-Dialogue-Generation.git). The original project can be found [here](https://github.com/jiweil/Neural-Dialogue-Generation.git).
 
 # Acknowledgement
 This work is supported by Engineering Research Center of Ministry of Education for Advanced Computer Application Technology (ACAREC) of Beihang University.
