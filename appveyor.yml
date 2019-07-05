@@ -7,8 +7,6 @@ install:
 build_script:
   - cmd: latexmk .\main.tex -pdf
 
-build:
-  verbosity: minimal
 artifacts:
   - path: main.pdf
     name: Paper
