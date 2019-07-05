@@ -37,8 +37,6 @@
 *.xdv
 .DS_Store
 
-# generated
-all.bib
 info
 
 tmp/
