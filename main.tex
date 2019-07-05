@@ -199,7 +199,7 @@
 
     \input{data/heatmap.tex}
 
-    Each subfigure in figure \ref{fig:corr_heatmap} is plotted from the correlation matrix for a model instance. The color of the cells represent the degree of correlation between the row and column labels, with red, blue, and white stand for possitive, negative and zero correlation, respectively. One can clearly spot red regions divided by white or blue lines from these plots, showing the signs of high local correlations.
+    Each subfigure in figure \ref{fig:corr_heatmap} is plotted from the correlation matrix for a model instance. The color of the cells represents the degree of correlation between the row and column labels, with red, blue, and white stand for positive, negative and zero correlation, respectively. One can spot red regions divided by white or blue lines from these plots, showing the signs of high local correlations.
 
     To better observe the agreement and disagreement among the metrics, we applied hierarchical clustering to the metrics based on their correlations and the results are shown in figure \ref{fig:hierarchy}. A hierarchical clustering algorithm starts with a forest of nodes and iteratively merges them into larger clusters until the root cluster is created. We used the following node-level distance $\textit{dist}(\cdot, \cdot)$ and cluster-level distance $d(\cdot, \cdot)$:
     \begin{align}
@@ -209,7 +209,7 @@
     where $i$ and $j$ are points in cluster $u$ and $v$, respectively. $|u|$ and $|v|$ are the cardinalities of cluster $u$ and $v$, respectively\footnote{This is also known as the average method.}. Again the correlation is based on Pearson's r.
     \input{data/hierarchy.tex}
 
-    From figure \ref{fig:hierarchy}, we observe a hierarchy of agreement among different metrics. The clusters that were created in the earlier iterations appear closer to the leaves of the tree, which indicates higher pairwise correlations or stronger inter-metric agreement. As a cluster grows larger, its children becomes loosely connected with greater distances. It is interesting to find that the dendrograms in figure \ref{fig:hierarchy} share some regular structure, which has an observable correspondence to the category of the metrics. Across all the settings, we generally observe these independent clusters, named after their shared category or a representative element:
+    From figure \ref{fig:hierarchy}, we observe a hierarchy of agreement among different metrics. The clusters that were created in the earlier iterations appear closer to the leaves of the tree, which indicates higher pairwise correlations or stronger inter-metric agreement. As a cluster grows larger, its children become loosely connected with greater distances. It is interesting to find that the dendrograms in figure \ref{fig:hierarchy} share some regular structure, which has an observable correspondence to the category of the metrics. Across all the settings, we generally observe these independent clusters, named after their shared category or a representative element:
     \begin{enumerate}
         \item Word-Overlap: a large cluster that contains many subclusters formed by different word-overlap metrics, such as BLEU, ROUGE, and METEOR.
         \item Word-Embedding: a small cluster that contains Vector-Average, Vector-Extrema, and Greedy-Matching.
@@ -218,9 +218,9 @@
         \item Distinct-2 and \#words: a generally observable cluster.
     \end{enumerate}
 
-    Those clusters confirm our hypothesis on the inconsistency among different metrics. Luckily, there are still some forms of agreement that the same cluster of metrics can reach. Unfortunately, the exact reasons why the clusters are formed this way are unclear to us. Although our experiments have a simple procedure, it should be noted that the mechanism behind each step have a complex nature. For example, the dialogue datasets are intrinsically very diverse and the way the generative models work is not well-understood. Besides, it is also unclear how these metrics reflect the desirable properties of a response. Hence we can only conclude that similar metrics tend to have consistent results on the example-level. The similarity of metrics generally refers to their mechanisms, such as the way to extract overlap units or derive semantics from an utterance, or the way to combine different components.
+    Those clusters confirm our hypothesis on the inconsistency among different metrics. Luckily, there are still some forms of agreement that the same cluster of metrics can reach. Unfortunately, the exact reasons why the clusters are formed this way are unclear to us. Although our experiments have a simple procedure, it should be noted that the mechanism behind each step has a complex nature. For example, the dialogue datasets are intrinsically very diverse and the way the generative models work is not well-understood. Besides, it is also unclear how these metrics reflect the desirable properties of a response. Hence we can only conclude that similar metrics tend to have consistent results on the example-level. The similarity of metrics generally refers to their mechanisms, such as the way to extract overlap units or derive semantics from an utterance, or the way to combine different components.
 
-    Specifically, on the one hand, we find that metrics based on word overlap tend to have high pairwise correlations, due to the fact that they all make use of the n-gram statistics somehow. On the other hand, it is confirming to observe that ADEM does not correlate with all the other metrics, since it has a much higher correlation with human judgment while other metrics do not.
+    Specifically, on the one hand, we find that metrics based on word overlap tend to have high pairwise correlations since they all make use of the n-gram statistics somehow. On the other hand, it is confirming to observe that ADEM does not correlate with all the other metrics since it has a much higher correlation with human judgment while other metrics do not.
 
     \subsection{Qualitative Analysis}
     \input{data/example/OpenSubtitles.tex}
@@ -237,7 +237,9 @@
 
     \paragraph{Implication}
     \paragraph{Suggestion}
+
     \paragraph{Future Work}
+
 
     \subsection*{Acknowledgements.}
     This work was supported by the Engineering Research Center of Ministry of Education for Advanced Computer Application Technology (ACAREC) of Beihang University. We also appreciate the advice from anonymous reviewers.
