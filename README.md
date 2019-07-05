@@ -1,5 +1,6 @@
 [![CircleCI](https://circleci.com/gh/cgsdfc/ICONIP2019.svg?style=svg&circle-token=c7abc42f7d5476d0a13d2c1c927d9078f2f8df99)](https://circleci.com/gh/cgsdfc/ICONIP2019)
 [![Build status](https://ci.appveyor.com/api/projects/status/5592iiitlxd5rtp3?svg=true)](https://ci.appveyor.com/project/cgsdfc/iconip2019)
+[![Build Status](https://travis-ci.org/cgsdfc/ICONIP2019.svg?branch=master)](https://travis-ci.org/cgsdfc/ICONIP2019)
 
 # My Paper for ICONIP2019
 This repository hosts the latex source code for my submission to the [ICONIP2019](ICONIP2019) (International Conference of Neural Information Processing). The title is *Automatic Evaluation of Generative Dialogue Systems: An Empirical Study*. This is my very first attempt to write a formal academic paper in full English. We conducted an empirical study on various metrics of the generative dialogue systems.
