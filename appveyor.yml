@@ -1,7 +1,7 @@
 version: 1.0.{build}
 image: Visual Studio 2017
 install:
-  - ps: choco install -y miktex.portable
+  - ps: choco install -y miktex
   - cmd: refreshenv
 cache:
   - C:\ProgramData\chocolatey\bin -> appveyor.yml
