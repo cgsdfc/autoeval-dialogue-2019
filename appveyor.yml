@@ -5,4 +5,4 @@ install:
   - cmd: refreshenv
 
 build_script:
-  - cmd: pdflatex .\main.tex
+  - cmd: latexmk .\main.tex -pdf

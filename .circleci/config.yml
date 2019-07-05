@@ -13,7 +13,7 @@ jobs:
       - checkout
       - run:
           command: |
-            latexmk main -pdf
+            latexmk main.tex -pdf
       - persist_to_workspace:
           root: /root
           paths:
