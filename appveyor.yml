@@ -3,9 +3,9 @@ image: Visual Studio 2017
 install:
   - ps: choco install -y miktex
   - cmd: refreshenv
-cache:
-  - C:\ProgramData\chocolatey\bin -> appveyor.yml
-  - C:\ProgramData\chocolatey\lib -> appveyor.yml
+#cache:
+#  - C:\ProgramData\chocolatey\bin -> appveyor.yml
+#  - C:\ProgramData\chocolatey\lib -> appveyor.yml
 
 build_script:
   - cmd: latexmk .\main.tex -pdf
