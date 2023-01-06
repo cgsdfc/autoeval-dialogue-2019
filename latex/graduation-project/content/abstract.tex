@@ -1,0 +1,65 @@
+% 中英文摘要
+\begin{cabstract}
+    尽管基于序列到序列的生成式对话系统已经能够生成自然而流畅的响应，
+    这类模型普遍存在着生成单调响应（Generic Response）的倾向。
+    对话系统的目标是生成多样的，有意义的，能引起人们兴趣的对话。
+    为了实现这一目标，学者们提出了各种模型，
+    从不同角度解决单调响应的问题。
+    但是由于缺乏好的自动化评价指标，模型的评估高度依赖于人类评价，
+    导致评估系统的代价高昂，规模难以扩大。
+    为了了解不同的评价指标的优缺点，
+    本文在三个公开数据集上训练了三个生成式对话模型，
+    测定不同指标的系统层面得分和句子层面得分。
+    本文发现，不同数据集上的模型在不同指标上的得分没有完全的一致性。
+    总体来说，数据集对得分的影响大于模型对得分的影响，
+    而使用相同特征的指标具有相似的句子层面得分分布。
+    本文从经验上总结了上述现象的原因，包括
+    合理的响应空间过于庞大，给评价增加了难度；
+    模型在不同数据集上的泛化能力有待加强；
+    指标的分布各异，给评价造成了混乱等等。
+    最后，本文提出了关于上述问题的若干研究方向，
+    包括使用新的模型体系结构，
+    研究开放领域对话数据集的统计规律和发展特定数据集上的指标等等。
+\end{cabstract}
+
+% -- 除了pros and cons 还有transferrability，可迁移性。
+\begin{eabstract}
+    Although the Seq2Seq-based generative dialogue systems are
+    able to generate natural and
+    fluent responses,
+    they have been known for preferring to generate
+    simple and repeated responses.
+    Towards the goal of generating diverse, meaningful and
+    engaging dialogues,
+    many researchers proposed methods to address the
+    problems of low-quality responses.
+    However, it is also known that the
+    lack of good automatic evaluation metrics
+    has led the field to rely heavily on human evaluation,
+    which is expensive and unscalable.
+    To better understand the pros and cons of various
+    evaluation metrics,
+    we trained three generative models on
+    three public-available datasets and measured their
+    performances with various metrics on both system level
+    and utterance level.
+    We found that there is no observable consistency among scores
+    across various models, datasets and metrics.
+    However, on a per-metric basis, datasets generally pose a larger impact on
+    the scores than models do.
+    In addition, the distributions of
+    utterance-level scores tend to have similar shape if the corresponding metrics
+    use the same set of features as measurement.
+    We owe the experimental observations to the facts
+    that the enormous space for reasonable responses
+    makes the evaluation hard to tackle.
+    Meanwhile, the ability of the models to generalize across
+    various datasets remain highly enhanceable.
+    Finally, the highly diversed distributions of scores
+    of various metrics makes the results somehow confusing.
+    Based on the empirical results, we pointed out several
+    directions for future work, including using new model
+    architectures, investigating the statistical nature of
+    the open-domain dialogue datasets and
+    developing dataset-specific metrics.
+\end{eabstract}

@@ -1,0 +1,53 @@
+% !Mode:: "TeX:UTF-8"
+% Author: Zhengxi Tian
+% Email: zhengxi.tian@hotmail.com
+
+\documentclass[bachelor,openany,oneside,color]{buaathesis}
+\usepackage{geometry}
+\geometry{top=3.0cm, bottom=2.5cm, left=3.0cm, right=2.0cm}
+\usepackage{ifthen}
+\setboolean{@twoside}{false}
+
+% -------- argmax/argmin ------------- %
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\begin{document}
+
+% 用户信息
+\include{content/com_info}
+\include{content/bachelor/bachelor_info}
+
+% 任务书信息
+\include{content/bachelor/assign}
+
+% 页眉页脚样式
+\pagestyle{mainmatter}
+% 封面、任务书、声明
+\maketitle
+% 摘要
+\include{content/abstract}
+% 目录
+\tableofcontents
+
+% 正文页码样式
+\mainmatter
+
+% 正文
+\newgeometry{a4paper,left=3cm,right=2cm,top=3cm,bottom=3cm}
+\include{content/chapter1-intro}
+\include{content/chapter2-relatedwork}
+\include{content/chapter3-methodology}
+\include{content/chapter4-experiment}
+\include{content/chapter5-conclusion}
+
+% 致谢
+\include{content/bachelor/acknowledgement}
+% 参考文献
+\include{content/reference}
+
+% 附录
+\appendix
+\include{content/appendix1}
+\include{content/appendix2}
+
+\end{document}
