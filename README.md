@@ -1,12 +1,8 @@
-[![CircleCI](https://circleci.com/gh/cgsdfc/ICONIP2019.svg?style=svg&circle-token=c7abc42f7d5476d0a13d2c1c927d9078f2f8df99)](https://circleci.com/gh/cgsdfc/ICONIP2019)
-[![Build status](https://ci.appveyor.com/api/projects/status/5592iiitlxd5rtp3?svg=true)](https://ci.appveyor.com/project/cgsdfc/iconip2019)
-[![Build Status](https://travis-ci.org/cgsdfc/ICONIP2019.svg?branch=master)](https://travis-ci.org/cgsdfc/ICONIP2019)
-
 # My Paper for ICONIP2019
 This repository hosts the latex source code for my submission to the [ICONIP2019](ICONIP2019) (International Conference of Neural Information Processing). The title is *Automatic Evaluation of Generative Dialogue Systems: An Empirical Study*. This is my very first attempt to write a formal academic paper in full English. We conducted an empirical study on various metrics of the generative dialogue systems.
 
 # Contributions
-We first trained three models (LSTM, HRED, and VHRED) on three datasets (LSDSCC, OpenSubtitles, and Ubuntu) and then measured the system-level scores and example-level scores with vairous metrics. The metrics we used included word-overlap ones such BLEU and METEOR and word-embedding ones such as Vector Average and Greedy Matching.
+We first trained three models (LSTM, HRED, and VHRED) on three datasets (LSDSCC, OpenSubtitles, and Ubuntu) and then measured the system-level scores and example-level scores with various metrics. The metrics we used included word-overlap ones such BLEU and METEOR and word-embedding ones such as Vector Average and Greedy Matching.
 
 On the example level, we observed an inter-metrics clustering based on correlations. In other words, similar metrics tend to have better correlations with one another. The results imply tuning with one set of metrics may yield a gotcha when testing on a dissimilar set of metrics.
 
@@ -20,4 +16,5 @@ Here are some useful links related to this project:
 - My fork of the wonderful but messy codebase of Li et al. is at [Neural-Dialogue-Generation](https://github.com/cgsdfc/Neural-Dialogue-Generation.git). The original project can be found [here](https://github.com/jiweil/Neural-Dialogue-Generation.git).
 
 # Acknowledgement
-This work is supported by Engineering Research Center of Ministry of Education for Advanced Computer Application Technology (ACAREC) of Beihang University.
+
+This work is supported by the Engineering Research Center of the Ministry of Education for Advanced Computer Application Technology (ACAREC) of Beihang University.
