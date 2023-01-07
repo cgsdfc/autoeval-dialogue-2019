@@ -14,7 +14,8 @@ The code locations are listed as follows:
 - [paper-zh](paper-zh/README.md) contains the LaTeX source of the Chinese version.
 - [paper-en](paper-zh/README.md) contains the LaTeX source of the Chinese version.
 - [src](src/README.md) contains the Python source of the benchmark framework called `Eval`.
-- [neural-dialogue-metrics](https://github.com/neural-dialogue-metrics) contain our implementations of several classical dialogue evaluation metrics, i.e., BLEU, ROUGE, METEOR, Distinct-N, EmbeddingBased, etc. 
+- [paper-zh/literature](paper-zh/literature/README.md) contains the pdf's and links to some of the classical literature of the generative dialogue systems.
+
 
 ## Briefing
 
@@ -30,12 +31,13 @@ We then looked at the utterance-level scores (which measured how good a generate
 - This work basically reproduced known facts about dialogue metrics and systems. No new metrics, models, nor datasets were proposed.
 - This work has been outdated since it was written in the age of the Seq2Seq framework. Now that the Transformer-based models have advanced the field of dialogue systems significantly, it is time for this work to retire.
 
-## Related Works
+## Related Links
 
-Some related repositories that might be useful are listed as follows:
+Some related links that might be useful are listed as follows:
 
 - [HRED and VHRED](https://github.com/julianser/hed-dlg-truncated.git) are the HRED and VHRED dialogue models proposed by Serban, et al.
 - [Neural-Dialogue-Generation](https://github.com/jiweil/Neural-Dialogue-Generation.git) is a bunch of neural dialogue generators proposed by Jiwei Li, et al.
+- [neural-dialogue-metrics](https://github.com/neural-dialogue-metrics) contain our implementations of several classical dialogue evaluation metrics, i.e., BLEU, ROUGE, METEOR, Distinct-N, EmbeddingBased, etc. 
 
 ## Acknowledgement
 
