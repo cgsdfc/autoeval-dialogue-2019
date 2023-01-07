@@ -1,6 +1,6 @@
 # MIT License
 # 
-# Copyright (c) 2022 cgsdfc
+# Copyright (c) 2019 Cong Feng
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ setup(
     name='EvalHelper',
     version=__version__,
     description='Evaluation Helper',
-    author='cgsdfc',
+    author='Cong Feng',
     author_email='cgsdfc@126.com',
     keywords=[
         'NL', 'CL', 'MT',
